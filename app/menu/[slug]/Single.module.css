@@ -1,0 +1,12 @@
+.image {
+  width: 100%;
+  height: calc(30vw + 100px);
+  object-fit: cover;
+  overflow: hidden;
+  z-index: 999;
+}
+@media screen and (min-width: 1200px) {
+  .image {
+    height: calc(40vw + 100px);
+  }
+}

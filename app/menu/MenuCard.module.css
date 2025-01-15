@@ -1,0 +1,120 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 1s ease;
+  margin-top: calc(0.6rem + 1.5vw);
+}
+
+.menuThumb {
+  width: 100%;
+}
+
+.menuThumb a {
+  display: block;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.hoverImage {
+  position: absolute;
+}
+.image,
+.scaleImage {
+  display: block;
+  position: relative;
+}
+.image,
+.hoverImage,
+.scaleImage {
+  width: 100%;
+  min-width: 100%;
+  height: 70vw;
+  object-fit: cover;
+  overflow: hidden;
+
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.scaleImage:hover {
+  transform: scale(1.2);
+}
+@media screen and (min-width: 767px) {
+  .image,
+  .hoverImage,
+  .scaleImage {
+    height: 35vw;
+  }
+}
+
+@media screen and (min-width: 1023px) {
+  .image,
+  .hoverImage,
+  .scaleImage {
+    height: 23vw;
+  }
+}
+@media screen and (min-width: 1700px) {
+  .image,
+  .hoverImage,
+  .scaleImage {
+    height: 20vw;
+  }
+}
+.menuThumb a:hover .image {
+  opacity: 0;
+}
+
+.label {
+  width: 100%;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.title {
+  margin: 1.7rem 0 0.5rem;
+  text-align: left;
+  font-size: 1.45rem;
+}
+.title a {
+  color: inherit;
+  text-decoration: none;
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+  display: inline;
+  text-align: left;
+}
+
+.caption {
+  flex: 1 1 auto;
+  font-size: 0.88rem;
+}
+.links {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0 0;
+}
+@media screen and (max-width: 767px) {
+  .links {
+    flex-direction: column;
+  }
+}
+.link {
+  margin-left: 1.5rem;
+  font-size: 0.88rem;
+  flex: 1 1 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .link {
+    margin-top: 1rem;
+    margin-left: 0;
+  }
+}

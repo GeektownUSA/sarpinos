@@ -1,0 +1,39 @@
+.hoverCar,
+.hoverMoon,
+.hoverCalendar {
+  position: relative;
+  transition: transform 0.5s ease-in-out;
+}
+.hoverCar svg,
+.hoverMoon svg,
+.hoverCalendar svg {
+  width: 100%;
+}
+.hoverMoon svg {
+  max-width: 140px;
+}
+.lines {
+  opacity: 0;
+  transform: scale(0.8) translateX(40px);
+  transform-origin: left center;
+  transition: all 0.5s ease-in-out;
+}
+.hoverCar:hover {
+  transform: translateX(10px);
+}
+
+.hoverCar:hover .lines {
+  opacity: 1;
+  transform: scale(1) translateX(0px);
+}
+
+.hoverMoon:hover {
+  transform: rotate(-12deg);
+}
+
+.hoverCalendar:hover {
+  transform: rotate(-6deg) translateX(10px);
+}
+.hide {
+  display: none;
+}

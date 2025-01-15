@@ -1,0 +1,30 @@
+.shareToggle {
+  position: relative;
+}
+.btnText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0;
+  border: 0;
+  padding: 0;
+  line-height: inherit;
+  font-size: 0.875em;
+  font-weight: 500;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  text-decoration: none;
+  background-color: transparent;
+  margin: 0 0 2rem;
+}
+.btnText img {
+  margin-left: 0.5rem;
+}
+
+.shareThis {
+  position: absolute;
+  top: -1rem;
+  left: 80px;
+}

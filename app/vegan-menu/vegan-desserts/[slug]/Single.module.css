@@ -1,0 +1,52 @@
+.container {
+  border-radius: 10px;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.title {
+  margin: auto;
+  max-width: 900px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  max-height: 550px;
+  object-fit: cover;
+  overflow: hidden;
+  z-index: 999;
+  border-radius: 10px;
+}
+
+.date {
+  font-size: 1rem;
+  color: var(--green-color);
+  line-height: 18px;
+  padding-bottom: 2rem;
+}
+
+.content {
+  max-width: 860px;
+  margin: 4rem auto;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  margin: 2rem 0 0 0;
+  font-size: clamp(1.1rem, 1.5vw, 1rem);
+  line-height: 1.1;
+}
+.content p {
+  margin: 0 0 1rem 0;
+}
+
+.content img {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}

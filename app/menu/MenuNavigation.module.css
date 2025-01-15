@@ -1,0 +1,152 @@
+nav.light,
+nav.dark,
+nav.night {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  padding: calc(94px + 1.5rem) 0 1rem;
+}
+nav.light {
+  background-color: var(--darkred-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+nav.light::after {
+  content: "";
+  display: block;
+  width: calc(50px + 2vw);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: linear-gradient(
+    to right,
+    rgba(175, 15, 4, 0),
+    rgba(175, 15, 4, 1)
+  );
+  pointer-events: none;
+}
+nav.night {
+  background-color: var(--green-color);
+  border-bottom: 1px solid rgba(88, 128, 82, 0.4);
+}
+nav.night::after {
+  content: "";
+  display: block;
+  width: calc(50px + 2vw);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: linear-gradient(to right, rgba(0, 79, 57, 0), rgba(0, 79, 57, 1));
+  pointer-events: none;
+}
+nav.dark {
+  background-color: var(--cream-color);
+  border-bottom: 1px solid #c2b59b;
+}
+nav.dark::after {
+  content: "";
+  display: block;
+  width: calc(50px + 2vw);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: linear-gradient(
+    to right,
+    rgba(243, 240, 235, 0),
+    rgba(243, 240, 235, 1)
+  );
+  pointer-events: none;
+}
+.menuNavigation {
+  display: inline-flex;
+  margin: 0;
+  padding: 0 5rem 0 0;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.menuLabel {
+  padding: 0 1.5rem;
+}
+@media screen and (max-width: 768px) {
+  .menuLabel {
+    padding: 0;
+  }
+}
+
+.menuLabel img.menuLabelFull {
+  width: 113px;
+  height: 44px;
+  max-width: none;
+}
+@media screen and (max-width: 768px) {
+  .menuLabel img.menuLabelFull {
+    width: 89px;
+    height: 35px;
+    max-width: none;
+  }
+}
+.menuLabel img.menuLabelVegan {
+  width: 126px;
+  height: 44px;
+  max-width: none;
+}
+@media screen and (max-width: 768px) {
+  .menuLabel img.menuLabelVegan {
+    width: 97px;
+    height: 35px;
+    max-width: none;
+  }
+}
+.menuNavigation::-webkit-scrollbar {
+  display: none;
+}
+
+.navItem {
+  display: inline-block;
+  border-radius: 2rem;
+  font-weight: 500;
+  font-family: var(--museo-slab);
+  font-weight: 700;
+  color: var(--cream-color);
+  overflow: hidden;
+  text-decoration: none;
+  margin: 0.3rem 0.5rem 0 0.5rem;
+  background-color: transparent;
+  border: none;
+  padding: 0 1rem;
+  line-height: 40px;
+  font-size: 0.9375rem;
+}
+@media screen and (max-width: 768px) {
+  .navItem {
+    font-size: 0.875rem;
+    line-height: 35px;
+    margin: 0.5rem 0 0;
+  }
+}
+.navItem.active {
+  background-color: var(--green-color);
+  color: var(--cream-color);
+}
+.light .navItem {
+  color: var(--cream-color);
+}
+.dark .navItem {
+  color: var(--green-color);
+}
+.dark .navItem.active {
+  color: var(--cream-color);
+}
+.night .navItem.active {
+  background-color: var(--lightgreen-color);
+  color: var(--cream-color);
+}

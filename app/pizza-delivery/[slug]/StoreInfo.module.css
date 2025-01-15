@@ -1,0 +1,85 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 2rem 0;
+  grid-gap: 4vw;
+  max-width: 800px;
+}
+.column1 {
+  padding-bottom: 4vh;
+  border-bottom: 1px dashed var(--gray2-color);
+}
+.column2 {
+  padding-top: 4vh;
+}
+@media (min-width: 768px) {
+  .column1 {
+    padding-right: 4vw;
+    border-right: 1px dashed var(--gray2-color);
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .column2 {
+    padding-top: 0;
+  }
+}
+.content {
+  margin: 3rem 0;
+  max-width: 800px;
+}
+.container2 {
+  display: flex;
+  margin: 1rem 0;
+  padding: 2rem 0;
+  grid-gap: 4vw;
+  max-width: 800px;
+}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .container2 {
+    flex-direction: column;
+  }
+}
+ol.list {
+  margin: 1rem 2rem;
+}
+ol.list li {
+  list-style-type: decimal;
+  margin: 1rem 0;
+}
+ul.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.managerPhoto {
+  border-radius: 100%;
+  margin-right: 3vw;
+}
+.managerName {
+  margin: 2rem 0 0.5rem;
+  font-size: 1.25rem;
+  font-family: var(--museo-slab);
+}
+.managerEmail {
+  font-family: var(--museo-slab);
+  font-size: 1.1rem;
+  text-decoration: underline;
+}
+@media (min-width: 768px) {
+  .careers {
+    column-count: 2;
+    column-gap: 4vw;
+  }
+}
+.jobLink {
+  font-family: var(--museo-sans);
+  color: var(--gray2-color);
+  font-size: 1.25rem;
+}

@@ -1,0 +1,53 @@
+.listSearch,
+.navSearch {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-family: var(--museo-slab);
+  font-weight: 700;
+  color: var(--red-color);
+}
+@media (max-width: 1050px) {
+  .listSearch,
+  .navSearch {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.listSearch span,
+.navSearch span {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  color: var(--red-color);
+}
+.navSearch span {
+  color: white;
+}
+.searchBtn {
+  font-family: var(--museo-slab);
+  font-weight: 700;
+  background: var(--red-color) url("/get-current-location.svg") no-repeat right
+    1rem center;
+  padding: 0 2.5rem 0 1.3rem;
+  line-height: 42px;
+  height: 46px;
+}
+.inputBtn {
+  font-family: var(--museo-slab);
+  font-weight: 700;
+  border-color: var(--red-color);
+  color: var(--gray2-color);
+  background: white url("/zoom-icon.svg") no-repeat right 1rem center;
+  padding: 0.65rem 2.5rem 0.65rem 1rem;
+}
+
+.goBtn,
+button[type="submit"].goBtn {
+  border: none;
+  background-color: transparent;
+  background: transparent url("/zoom-icon.svg") no-repeat center;
+  padding: 1rem;
+}
+.listSearch .goBtn {
+  display: none;
+}

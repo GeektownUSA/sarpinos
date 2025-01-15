@@ -1,0 +1,15 @@
+.ingredients {
+  padding: calc(2vw + 1rem) calc(2vw + 1rem) calc(4vw + 1rem);
+  background-image: url("/homepage-bkg-illustrations-black.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.ingredients h1,
+.ingredients h2,
+.ingredients h3,
+.ingredients h4,
+.ingredients h5,
+.ingredients h6 {
+  margin: 2rem 0 1rem;
+}

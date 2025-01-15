@@ -1,0 +1,39 @@
+.form label {
+  display: block;
+  margin: 0;
+}
+.form input,
+.form textarea,
+.form select {
+  border-radius: 10px;
+  padding: 10px;
+  width: calc(100% - 24px);
+  margin-top: 10px;
+}
+.form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  min-height: 38px;
+  line-height: 38px;
+  color: #000;
+  padding: 0 10px;
+}
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-flow: row wrap;
+  grid-gap: 10px;
+}
+.grow1 {
+  flex-grow: 1;
+}
+.w100 {
+  width: 100px;
+}
+.w50 {
+  width: 40%;
+}

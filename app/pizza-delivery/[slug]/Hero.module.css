@@ -1,0 +1,23 @@
+.hero {
+  position: relative;
+  min-height: 461px;
+  display: flex;
+  align-items: center;
+  background-color: #222;
+}
+.heroImage {
+  object-fit: cover;
+  width: 100%;
+  position: absolute;
+}
+.heroContent {
+  position: relative;
+  color: white;
+  padding-top: 120px;
+}
+.pinBtn {
+  background: url("/map-pin.svg") left center no-repeat;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+  display: block;
+}

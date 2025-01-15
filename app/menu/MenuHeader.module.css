@@ -1,0 +1,8 @@
+.image {
+  object-fit: cover;
+}
+@media (max-width: 768px) {
+  .image {
+    max-height: 200px;
+  }
+}

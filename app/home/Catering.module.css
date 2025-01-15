@@ -1,0 +1,64 @@
+.content {
+  padding-bottom: 1rem;
+}
+@media screen and (min-width: 767px) {
+  .content {
+    align-items: flex-start;
+  }
+}
+.cateringAnimation {
+  position: relative;
+}
+
+.tanOutlineHeart {
+  position: absolute;
+  display: block;
+  top: -30px;
+  left: 66%;
+  width: calc(25px + 5vw);
+  height: 86px;
+  animation: heartZoomUpDown 2.5s ease-in-out infinite 2s;
+  z-index: 97;
+}
+.greenFillHeart {
+  position: absolute;
+  display: block;
+  top: 3px;
+  left: 73%;
+  width: calc(29px + 5vw);
+  height: 91px;
+  animation: heartSlideUpDown 5s cubic-bezier(0.7, -0.01, 0.76, 1.03) infinite;
+  z-index: 98;
+}
+.greenOutlineHeart {
+  position: absolute;
+  display: block;
+  top: -20px;
+  left: 80%;
+  width: calc(38px + 5vw);
+  height: 86px;
+  animation: heartSlideUpDown 3s cubic-bezier(0.7, -0.09, 0.79, 1.07) infinite;
+  z-index: 99;
+}
+@keyframes heartZoomUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(22px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes heartSlideUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

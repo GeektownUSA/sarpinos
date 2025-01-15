@@ -1,0 +1,29 @@
+.title {
+  margin: 3rem 0 2rem;
+  max-width: 550px;
+  font-size: clamp(1.37rem,3.5vw,1.875rem);
+}
+.content {
+  color: var(--red-color);
+}
+
+.content ul {
+  columns: 1;
+  margin: 0 auto 2rem;
+  color: var(--gray2-color);
+}
+@media screen and (min-width: 768px) {
+  .content ul {
+    column-gap: calc(3vw + 1.5rem);
+    columns: 2 auto;
+  }
+}
+.feature {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  max-width: 450px;
+}
+.icon {
+  margin: 0 1rem 0 0;
+}

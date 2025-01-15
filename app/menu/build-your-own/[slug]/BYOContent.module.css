@@ -1,0 +1,117 @@
+/* Sizes */
+.sizes {
+  display: flex;
+  align-items: stretch;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.sizes::-webkit-scrollbar {
+  display: none;
+}
+
+.sizeItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.circleContainer {
+  flex-grow: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1rem;
+}
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  flex-shrink: 0;
+  text-align: center;
+  line-height: 0;
+  font-family: var(--museo-slab);
+  font-weight: 700;
+  border: 1px solid var(--cream-color);
+  color: var(--cream-color);
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+}
+.sizeItem:nth-child(2) .circle {
+  width: 72px;
+  height: 72px;
+}
+
+.sizeItem:nth-child(3) .circle {
+  width: 86px;
+  height: 86px;
+}
+
+.sizeItem:nth-child(4) .circle {
+  width: 100px;
+  height: 100px;
+}
+
+.sizeItem:nth-child(5) .circle {
+  width: 115px;
+  height: 115px;
+}
+
+.sizeItem:nth-child(6) .circle {
+  width: 125px;
+  height: 125px;
+}
+.sizeItem:nth-child(7) .circle {
+  width: 140px;
+  height: 140px;
+}
+.label {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+/* Ingredients and sauces */
+.ingredients {
+  margin: 2rem auto;
+}
+.ingredientsContent {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--cream-color);
+  margin: 0 auto 2rem;
+}
+@media screen and (min-width: 768px) {
+  .ingredientsContent {
+    columns: 2 auto;
+    column-gap: calc(3vw + 1.5rem);
+  }
+}
+.ingredientsList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ingredientsList:last-child .ingredientsContent {
+  border-bottom: 0;
+  padding-bottom: 4rem;
+}
+.sauces {
+  columns: 2 auto;
+  column-gap: calc(3vw + 1.5rem);
+  padding-bottom: 2rem;
+  margin: 0 auto 2rem;
+}
+
+.ingredientsContent ul,
+.sauces ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ingredientsContent ul li,
+.sauces ul li {
+  display: block;
+  break-inside: avoid-column;
+}

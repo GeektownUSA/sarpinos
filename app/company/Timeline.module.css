@@ -1,0 +1,177 @@
+.container {
+  margin: 2rem 0;
+  padding-bottom: 2rem;
+}
+.rellaxDiv {
+  display: none;
+}
+
+.animation {
+  position: relative;
+  min-height: 400px;
+  height: 90vw;
+}
+.animation img {
+  position: absolute;
+}
+.pizzaImg {
+  width: 100%;
+  top: 0;
+  right: 0;
+  height: auto;
+  max-width: 540px;
+}
+.pepperoni1 {
+  top: 30%;
+  left: -6.5%;
+  width: 20%;
+  height: auto;
+}
+
+.pepperoni2 {
+  top: 5%;
+  left: 45%;
+  width: 17%;
+  height: auto;
+}
+.pepperoni3 {
+  top: -2%;
+  left: 21%;
+  width: 12%;
+  height: auto;
+}
+.pepperoni4 {
+  top: -11%;
+  left: 44%;
+  width: 20%;
+  height: auto;
+}
+.pepperoni5 {
+  top: 14%;
+  left: 57%;
+  width: 22%;
+  height: auto;
+}
+.pepperoni6 {
+  top: 3%;
+  left: -61%;
+  width: 21%;
+  height: auto;
+}
+@media screen and (min-width: 632px) {
+  .animation {
+    height: 100%;
+  }
+  .pizzaImg {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    height: auto;
+  }
+}
+.content {
+  box-sizing: border-box;
+  padding: 0 2rem 2rem 0;
+  margin: 0 0 0 auto;
+}
+.timeline {
+  display: flex;
+}
+.timeline h4 {
+  margin: 0;
+  padding: 2rem 1.25rem 0 0;
+  font-size: clamp(1.1rem, 1.5vw, 1rem);
+}
+.timelineYear {
+  flex: 0 0 70px;
+  text-align: right;
+}
+
+@media screen and (min-width: 768px) {
+  .shadow {
+    position: absolute;
+    width: 150%;
+    padding-top: 80%;
+    top: 10%;
+    right: -55%;
+    background: rgba(2, 2, 2, 0.3);
+    border-radius: 100%;
+    filter: blur(19px);
+    max-width: 750px;
+  }
+  .rellaxDiv {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+  }
+  .pepperoni1 {
+    transform: translateY(-90%);
+    top: 0;
+    left: -6.5%;
+    width: 21%;
+    height: auto;
+  }
+
+  .pepperoni2 {
+    transform: translateY(-106%);
+    top: 0;
+    left: 25%;
+    width: 17%;
+    height: auto;
+  }
+  .pepperoni3 {
+    transform: translateY(-78%);
+    top: 0;
+    left: 43%;
+    width: 13%;
+    height: auto;
+  }
+  .pepperoni4 {
+    transform: translateY(-406%);
+    top: 0;
+    left: 44%;
+    width: 20%;
+    height: auto;
+  }
+  .pepperoni5 {
+    transform: translateY(-350%);
+    top: 0;
+    left: 64.5%;
+    width: 22%;
+    height: auto;
+  }
+  .pepperoni6 {
+    transform: translateY(-88%);
+    top: 0;
+    left: -4%;
+    width: 21%;
+    height: auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .timelineYear {
+    flex: 0 0 calc(3vw + 100px);
+  }
+  .pizzaImg {
+    max-width: none;
+  }
+  .shadow {
+    top: 15%;
+    max-width: none;
+  }
+}
+.timelineInfo {
+  flex: 1;
+  padding-left: 1.25rem;
+  border-left: 2px solid #c2b598;
+}
+.timelineInfo h4 {
+  padding-left: 0;
+  color: var(--red-color);
+}
+.timelineInfo p {
+  margin: 0 0 2rem;
+}

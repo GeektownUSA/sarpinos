@@ -1,0 +1,361 @@
+nav.main-navigation {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 99999;
+}
+.coupon-callout {
+  display: none;
+}
+nav.main-navigation a:not(.primary-btn).coupon {
+  text-decoration: underline;
+  margin-left: 1rem;
+  font-family: var(--museo-sans);
+  font-weight: normal;
+  color: var(--red-color);
+  cursor: pointer;
+}
+.homepage-nav .coupon-callout {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  color: var(--red-color);
+  transition: all 1s ease-in-out;
+}
+.homepage-nav .coupon-callout.night-theme {
+  background-color: var(--red-color);
+  color: #ffffff;
+}
+nav.main-navigation .coupon-callout.night-theme a:not(.primary-btn).coupon {
+  color: white;
+}
+
+nav.main-navigation a:not(.primary-btn) {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 1rem;
+  font-family: var(--museo-slab);
+  font-weight: 700;
+}
+nav.main-navigation a:not(.primary-btn):hover {
+  text-shadow: 0 0 20px var(--cream-color);
+}
+
+nav.main-navigation li.item {
+  padding: 15px var(--navbar-padding);
+}
+li.item.button {
+  padding: 9px 5px;
+}
+li.item:not(.button) a:hover,
+li.item a:hover::after {
+  color: white;
+  cursor: pointer;
+  text-shadow: 0 0 20px var(--cream-color);
+}
+nav.main-navigation li.button.heart a::before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  margin-right: 7px;
+  top: 3px;
+  background: url("/heart-solid.svg") no-repeat center center;
+  background-size: contain;
+  transition: transform 0.2s ease-in-out;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.2);
+  }
+  30% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+nav.main-navigation li.item {
+  order: 3;
+  text-align: center;
+}
+nav.main-navigation .active.item {
+  display: block;
+}
+
+nav.main-navigation .has-submenu > a::after {
+  content: "";
+  display: inline-block;
+  height: 11px;
+  width: 11px;
+  margin-left: 8px;
+  background: url("/arrow-right.svg") no-repeat center center;
+  background-size: contain;
+}
+nav.main-navigation .has-submenu > a.active::after {
+  transform: rotate(90deg);
+}
+nav.main-navigation .subitem a {
+  padding: 10px 15px;
+}
+nav.main-navigation .subitem a.navlocator-btn {
+  padding: 17px 15px 13px;
+}
+.navbar {
+  background-color: var(--green-color);
+}
+.navbar.night-theme {
+  background-color: var(--lightgreen-color);
+}
+/* mobilemenu */
+@media all and (max-width: 1210px) {
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 2rem auto 0;
+    padding: var(--navbar-padding);
+    width: var(--navbar-width);
+    max-width: 1300px;
+    border-radius: 50px;
+  }
+  /* .homepage-nav .coupon-callout {
+    display: none;
+  } */
+  .navbar .logo a {
+    width: 123px;
+    height: 38px;
+  }
+  .navbar button {
+    font-size: 28px;
+    padding: 5px 20px;
+    background-color: transparent;
+    border: none;
+  }
+  ul.desktopmenu,
+  ul.desktoplinks {
+    display: none;
+  }
+}
+/*  desktopmenu */
+@media all and (min-width: 1210px) {
+  .navbar,
+  .navbar-dropdowns {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 2rem auto 0;
+    padding: var(--navbar-padding);
+    width: var(--navbar-width);
+    max-width: 1300px;
+    border-radius: 50px;
+    z-index: 1;
+  }
+  .homepage-nav .navbar {
+    margin-top: 1.25rem;
+  }
+  .navbar .logo {
+    width: 171px;
+    height: 53px;
+  }
+  .navbar .logo img {
+    width: 100%;
+    height: 100%;
+  }
+  .hamburger {
+    display: none;
+  }
+  ul.desktopmenu,
+  ul.desktoplinks {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+    align-items: flex-start;
+    background: none;
+  }
+  ul.desktopmenu {
+    margin: 0 0 0 calc(var(--navbar-padding) * 4);
+    flex: 1;
+  }
+  ul.desktopmenu li.item {
+    padding: 15px calc(var(--navbar-padding) * 2);
+  }
+
+  ul.desktopmenu li.item a:hover {
+    text-shadow: 0 0 20px var(--cream-color);
+  }
+  ul.desktoplinks {
+    align-items: center;
+  }
+  ul.desktoplinks li.button {
+    display: flex;
+    align-items: center;
+    padding: 6px var(--navbar-padding);
+  }
+
+  .navbar-dropdowns {
+    position: absolute;
+    top: 0px;
+    max-width: 1300px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent; /* override */
+    border-radius: 0; /* override */
+    justify-content: flex-start; /* override */
+    flex-wrap: nowrap; /* override */
+    padding: 0; /* override */
+    z-index: 0;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+  }
+  .navbar-dropdowns.dropdown-active,
+  .navbar-dropdowns.navlocator-active {
+    opacity: 1;
+    top: 70px;
+    pointer-events: all;
+  }
+  .homepage-nav .navbar-dropdowns.dropdown-active,
+  .homepage-nav .navbar-dropdowns.navlocator-active {
+    top: 110px;
+    pointer-events: all;
+  }
+  .navbar-dropdowns::before {
+    content: "";
+    display: block;
+    width: 199px;
+    height: 51px;
+  }
+  .navbar-dropdowns.locations-active::before {
+    display: none;
+  }
+  .navbar-dropdowns ul.submenu {
+    background-color: var(--green-color);
+    border-radius: 32px;
+    padding: var(--navbar-padding);
+  }
+  .navbar-dropdowns.night-theme ul.submenu {
+    background-color: var(--lightgreen-color);
+  }
+  .navbar-dropdowns ul.submenu.menu.active,
+  .navbar-dropdowns ul.submenu.locations.active {
+    display: flex;
+    transform: translateY(0);
+  }
+  .navbar-dropdowns ul.submenu.active li.has-submenu.without-thumbs ul {
+    margin: 0.5rem;
+  }
+  .navbar-dropdowns ul.submenu.active li.has-submenu.with-thumbs ul {
+    display: flex;
+    margin: 0.5rem 0.75rem;
+  }
+  .navbar-dropdowns ul.submenu.active li.has-submenu.with-thumbs ul li {
+    display: block;
+  }
+  .navbar-dropdowns ul.submenu.active li.has-submenu.with-thumbs ul li a {
+    padding: var(--navbar-padding) calc(var(--navbar-padding) / 1.25);
+  }
+  .navbar-dropdowns img.featured-image {
+    width: 191px;
+    height: 143px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+}
+.subitem-title {
+  color: white;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+.subitem-title-large {
+  color: white;
+  font-size: 1.25rem;
+  margin: 1rem auto;
+}
+
+.navbar-dropdowns .areas-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.navbar-dropdowns .area-button {
+  display: inline-block;
+  border-radius: 0;
+  border: 0;
+  padding: 0.75em 0.5rem 0.75em 1.1rem;
+  margin: 0 1rem;
+  line-height: 1;
+  font-size: 1em;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+
+  font-family: var(--museo-slab);
+  font-weight: 700;
+  background: url("/location-pin-white.svg") no-repeat left center;
+  transition: all 0.3s ease-in-out;
+}
+.navbar-dropdowns .area-button:hover {
+  background: url("/location-pin-white.svg") no-repeat left 10px;
+  text-shadow: 0 0 15px var(--cream-color);
+}
+
+.navbar-dropdowns ul.submenu.navlocator {
+  padding: calc(var(--navbar-padding) * 2);
+}
+
+@media all and (max-width: 1198px) {
+  .navbar-dropdowns.navlocator-active {
+    background-color: var(--green-color);
+    border-radius: 32px;
+    margin: 1rem auto 0;
+    width: var(--mobilemenu-width);
+  }
+}
+
+@media all and (max-width: 475px) {
+  .homepage-nav .coupon-callout {
+    font-size: 0.6rem;
+    justify-content: space-between;
+    padding: 0 10px;
+    width: calc(100% - 20px)
+  }
+  .homepage-nav .coupon-callout .coupon-name,
+  .homepage-nav .coupon-callout .coupon-code {
+    font-size: 0.8rem;
+  }
+  .homepage-nav .coupon-callout > span {
+    display: flex;
+    flex-direction: column;
+  }
+  nav.main-navigation a:not(.primary-btn).coupon {
+    font-weight: bold;
+  }
+}
+
+@media all and (max-width: 425px) {
+  nav.main-navigation .subitem a.navlocator-btn {
+    padding: 0.6rem 1rem 0.4rem;
+  }
+}

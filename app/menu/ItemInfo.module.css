@@ -1,0 +1,45 @@
+.sizes {
+  display: flex;
+}
+.sizeBtn {
+  background-color: transparent;
+  width: 55px;
+  height: 55px;
+  flex-shrink: 0;
+  padding: 0;
+  text-align: center;
+  line-height: 0;
+  font-family: var(--museo-slab);
+  border: 1px solid var(--green-color);
+  color: var(--green-color);
+  margin-right: 0.6rem;
+}
+.active {
+  background-color: var(--green-color);
+  color: var(--cream-color);
+}
+.singleSize {
+  background-color: transparent;
+  color: var(--green-color);
+  cursor: pointer;
+  pointer-events: none;
+}
+.table {
+  width: 100%;
+  max-width: 400px;
+  margin: 2rem 0;
+  font-weight: 300;
+  font-family: var(--museo-slab);
+  font-size: 0.9rem;
+}
+.table td {
+  padding: 0.25rem 0;
+}
+.title {
+  font-weight: 700;
+}
+.hr {
+  width: 100%;
+  max-width: 325px;
+  margin: 1.6rem auto 1.6rem 0;
+}

@@ -1,0 +1,48 @@
+.featuredContainer {
+  margin: 0 auto 2rem;
+  padding: 0.5rem;
+  width: calc(100% - 1rem);
+  border: 1px solid var(--green-color);
+  border-radius: 10px;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .featuredContainer {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  overflow: hidden;
+  z-index: 999;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.content {
+  padding: 0 1rem;
+}
+
+.title {
+  margin: auto;
+  text-align: left;
+  font-size: 1.6rem;
+}
+
+.date {
+  text-align: justify;
+  font-size: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.excerpt {
+  text-align: justify;
+  font-size: 0.95rem;
+}

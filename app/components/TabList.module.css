@@ -1,0 +1,56 @@
+/* Single menu page */
+.tabList {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin: 1rem auto;
+  border-bottom: 1px solid var(--green-color);
+}
+.tabList.greenTabs {
+  border-bottom: 1px solid var(--cream-color);
+  grid-template-columns: minmax(auto, 250px) auto;
+}
+.tabList.locationTabs {
+  border-bottom: none;
+  grid-template-columns: none;
+  display: flex;
+  grid-gap: 3vw;
+}
+.tabList.locationTabs .tabItem {
+  font-size: clamp(0.9rem, 3vw, 1.6rem);
+}
+.tabItem {
+  font-family: var(--museo-slab), serif;
+  font-weight: 300;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  line-height: 2;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  cursor: pointer;
+}
+.tabList.locationTabs .tabItem {
+  color: var(--gray3-color);
+}
+.tabItem span {
+  display: inline-block;
+  padding: 0 1rem;
+}
+.tabList.locationTabs .tabItem span {
+  padding: 0;
+}
+.tabList.locationTabs .tabItem.active {
+  color: var(--green-color);
+}
+.tabItem.active::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: 3px;
+  background-color: var(--green-color);
+}
+.tabList.locationTabs .tabItem.active::after {
+  background-color: var(--green-color);
+}
+.greenTabs .tabItem.active::after {
+  background-color: var(--cream-color);
+}

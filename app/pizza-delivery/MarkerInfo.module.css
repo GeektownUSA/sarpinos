@@ -1,0 +1,21 @@
+.infoWindow {
+  background-color: var(--red-color);
+}
+.iwTitle {
+  font-size: 17px;
+}
+.iwHours,
+.iwAddress {
+  font-family: var(--museo-sans);
+  font-size: 13px;
+  margin: 0 0 0.5rem 0;
+}
+.iwHours {
+  font-weight: 700;
+}
+.iwPhone {
+  font-size: 15px;
+  font-family: var(--museo-slab);
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}

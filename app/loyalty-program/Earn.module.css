@@ -1,0 +1,96 @@
+.title {
+  position: relative;
+  text-align: center;
+  margin: 3rem auto 1rem;
+  max-width: 1024px;
+  line-height: 1;
+}
+.title span {
+  position: relative;
+  z-index: 1;
+  background-color: var(--cream-color);
+  padding: 0 2rem;
+}
+.title::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 14px;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--gray4-color);
+  margin-bottom: 1rem;
+}
+.iconCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem auto;
+}
+.icon {
+  margin: 0 auto;
+  transition: all 0.3s ease-in-out;
+}
+.icon:hover {
+  transform: rotate(-5deg);
+}
+.iconTitle {
+  color: var(--lightgreen-color);
+  margin: 1rem auto 0.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+.iconCaption {
+  color: var(--gray2-color);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pointsContainer {
+  grid-gap: 0;
+  align-items: center;
+  justify-content: center;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+.pointsCol {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem auto;
+}
+
+.arrow {
+  display: block;
+  width: 60px;
+  height: 12px;
+  background: url("/arrow-long-red.svg") no-repeat center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 0;
+  transform: rotate(90deg);
+  margin: 3rem auto;
+}
+.pointsDesc {
+  color: var(--green-color);
+  margin: 1rem auto;
+  text-align: center;
+  max-width: 316px;
+}
+@media screen and (min-width: 767px) {
+  .pointsDesc {
+    margin: -4rem auto 4rem;
+  }
+  .arrow {
+    transform: rotate(0deg);
+    margin: 0 auto;
+  }
+}
+.pizza {
+  width: 400px;
+  height: 400px;
+  max-width: none;
+  object-fit: contain;
+}

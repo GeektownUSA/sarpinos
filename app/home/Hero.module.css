@@ -1,0 +1,398 @@
+.homepageHero {
+  position: sticky;
+  top: calc(3vw + 1rem);
+  z-index: 0;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+}
+
+.heroContainer {
+  width: 100%;
+  max-width: 1400px;
+  min-height: 750px;
+  padding: 0;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.pizzaShadow {
+  position: absolute;
+  width: 92%;
+  height: 95%;
+  top: 3%;
+  left: -2%;
+  background: rgba(105, 2, 2, 0.5);
+  border-radius: 860.214px;
+  filter: blur(19px);
+  opacity: 0;
+  animation: fadeIn 3s forwards 2s;
+}
+/*pizza animation */
+.pizzaAnimation {
+  position: absolute;
+  top: 130px;
+  width: 350px;
+  height: 350px;
+  left: 50%;
+  transform: translate(-47%, 0);
+  transition: all 0.2s ease-in-out;
+}
+.pizzaAnimation span {
+  display: block !important;
+}
+.content {
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+  padding: 470px 2rem 4rem;
+  color: white;
+}
+.homepageHero h1 {
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: slideUpIn 0.5s ease-in-out forwards;
+}
+.homepageHero h2 {
+  margin: 0 2.5rem;
+  font-family: var(--museo-slab);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+  opacity: 0;
+  animation: fadeIn 0.6s ease-in-out forwards 0.5s;
+}
+.homepageHero p {
+  display: none;
+}
+.homepageHero .btn-slide {
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-in-out forwards 0.75s;
+}
+
+@media screen and (min-width: 767px) {
+  .homepageHero {
+    height: calc(620px + 2vw);
+  }
+  .pizzaAnimation {
+    width: 400px;
+    height: 400px;
+    left: 5vw;
+    transform: translate(0, 0);
+  }
+  .heroContainer {
+    min-height: 650px;
+  }
+  .content {
+    padding: 0;
+    max-width: 400px;
+    margin: 0;
+    left: 45%;
+  }
+}
+
+@media screen and (min-width: 1124px) {
+  .homepageHero {
+    height: calc(720px + 2vw);
+  }
+  .pizzaAnimation {
+    width: 500px;
+    height: 500px;
+  }
+  .content {
+    max-width: 480px;
+    padding: 100px 0 0;
+    left: 48%;
+  }
+  .homepageHero p {
+    display: block;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-in-out forwards 0.55s;
+  }
+}
+
+@media screen and (min-width: 1315px) {
+  .homepageHero {
+    height: calc(825px + 2vw);
+  }
+  .pizzaAnimation {
+    width: 650px;
+    height: 650px;
+    top: 165px;
+    left: 50%;
+    transform: translate(-90%, 0);
+  }
+  .content {
+    padding: 175px 0 0;
+    transform: translate(20%, 0);
+  }
+}
+@media screen and (max-height: 850px) and (min-width: 1125px) {
+  .homepageHero {
+    position: relative;
+  }
+}
+@media screen and (max-height: 760px) and (max-width: 760px) {
+  .homepageHero {
+    position: relative;
+  }
+}
+
+
+.pizzaAnimation img {
+  position: absolute;
+}
+
+/*.pizzaAnimation images */
+.olives {
+  top: 9%;
+  left: 81%;
+  width: 18.5%;
+  height: auto;
+  animation: pizza-wobble-sweep 5.5s ease-in-out infinite;
+}
+
+@keyframes pizza-wobble-sweep {
+  0% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+  20% {
+    transform: rotate(10deg) translate(-5px, -5px);
+  }
+  40% {
+    transform: rotate(15deg) translate(15px, -10px);
+  }
+  80% {
+    transform: rotate(-2deg) translate(-5px, 0);
+  }
+  100% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+}
+.tomatoesCut {
+  top: 56%;
+  left: 93%;
+  width: 20%;
+  height: auto;
+  animation: pizza-wobble 5s ease-in-out infinite;
+}
+
+@keyframes pizza-wobble {
+  0% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+  40% {
+    transform: rotate(5deg) translate(-5px, 5px);
+  }
+  70% {
+    transform: rotate(-5deg) translate(5px, -5px);
+  }
+  80% {
+    transform: rotate(2deg) translate(-5px, -10px);
+  }
+  100% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+}
+
+.garlicBulb {
+  top: 71%;
+  left: 66%;
+  width: 18%;
+  height: auto;
+  animation: pizza-slide 4s cubic-bezier(0.25, 0.79, 0.25, 0.79) infinite;
+}
+
+@keyframes pizza-slide {
+  0% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+  40% {
+    transform: rotate(2deg) translate(15px, 15px);
+  }
+  80% {
+    transform: rotate(-2deg) translate(-2px, -2px);
+  }
+  100% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+}
+
+.pizza {
+  width: 95%;
+  top: 0;
+  left: 0;
+  height: auto;
+  animation: pizza-rotate 9s ease-in-out infinite;
+}
+@keyframes pizza-rotate {
+  0% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+  30% {
+    transform: rotate(2deg) translate(2px, 0);
+  }
+  60% {
+    transform: rotate(1deg) translate(1px, -2px);
+  }
+  90% {
+    transform: rotate(-1deg) translate(-1px, 0);
+  }
+  100% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+}
+.onions {
+  top: 4%;
+  left: 3%;
+  width: 33%;
+  height: auto;
+  animation: pizza-wobble 6s ease-in-out infinite;
+}
+.heartGreenOutline1 {
+  top: 17%;
+  left: 1%;
+  width: 10%;
+  height: auto;
+  animation: pizza-heartbeat-rotate 8s ease-in-out infinite;
+}
+.peppercorns {
+  top: -4%;
+  left: 31%;
+  width: 9%;
+  height: auto;
+  animation: pizza-triangle-rotate 6s ease-in-out infinite;
+}
+.heartTanOutline {
+  top: -4%;
+  left: 60%;
+  width: 9%;
+  height: auto;
+  animation: pizza-heartbeat-rotate 6s ease-in-out infinite;
+}
+.tomatoesFreshCut {
+  top: -6%;
+  left: 70%;
+  width: 23%;
+  height: auto;
+  animation: pizza-triangle-rotate 5s ease-in-out infinite;
+}
+.heartGreenFill {
+  top: 6%;
+  left: 68%;
+  width: 10%;
+  height: auto;
+  animation: pizza-heartbeat-pulse 1s cubic-bezier(0.25, 0.79, 0.25, 0.79)
+    infinite;
+}
+@keyframes pizza-heartbeat-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.basilLeaf1 {
+  top: 32%;
+  left: 77.5%;
+  width: 24%;
+  height: auto;
+  animation: pizza-triangle-rotate 7.25s ease-in-out infinite;
+}
+.heartGreenOutline2 {
+  top: 69%;
+  left: 80%;
+  width: 8%;
+  height: auto;
+  animation: pizza-heartbeat-rotate 11s ease-in-out infinite;
+}
+
+@keyframes pizza-heartbeat-rotate {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  20% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  30% {
+    transform: scale(1) rotate(0deg);
+  }
+  40% {
+    transform: scale(1.2) rotate(-8deg);
+  }
+  50% {
+    transform: scale(1) rotate(3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+.tomatoesWholeSliced {
+  top: 46%;
+  left: -6%;
+  width: 28%;
+  height: auto;
+  animation: pizza-wobble-sweep 7.5s ease-in-out infinite;
+}
+.basilLeaf2 {
+  top: 45%;
+  left: 4%;
+  width: 21%;
+  height: auto;
+  animation: pizza-slide 8s ease-in-out infinite;
+}
+.basilLeaf3 {
+  top: 63.5%;
+  left: 12.25%;
+  width: 23%;
+  height: auto;
+  animation: pizza-triangle-rotate 5s ease-in-out infinite;
+}
+
+@keyframes pizza-triangle-rotate {
+  0% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+  30% {
+    transform: rotate(2deg) translate(5px, 0);
+  }
+  60% {
+    transform: rotate(1deg) translate(3px, -5px);
+  }
+  90% {
+    transform: rotate(-1deg) translate(-3px, 0);
+  }
+  100% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+}
+.heartSolid {
+  top: 6%;
+  left: 65%;
+  width: 11%;
+  height: auto;
+}
+
+/* ANIMATION KEYFRAMES */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideUpIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
