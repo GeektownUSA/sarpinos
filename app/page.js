@@ -10,7 +10,6 @@ import WhySarpinos from './home/WhySarpinos';
 import InstagramFeed from './home/InstagramFeed';
 
 
-
 export async function generateMetadata({ params }) {
   const pageId = params.pageId || 149; // default to 149 if no ID is provided
   const metadata = await fetchMetadata(pageId);
