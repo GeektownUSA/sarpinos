@@ -133,7 +133,7 @@ export default function Footer() {
         </div>
         <div className="text-align-center" style={{ margin: '2rem auto 0' }}>
           <p>&copy;{year} Sarpino&apos;s USA, Inc. All Rights Reserved</p>
-          <a href="https://admin-v1.gosarpinos.com/admin/" target="_blank" className="textBtn" rel="noopener noreferrer">Franchise Login</a> | <Link href="/privacy" className="textBtn">Privacy Policy</Link> | <Link href="/tos" className="textBtn">Website Terms of Use</Link>
+          {/*<a href="https://admin-v1.gosarpinos.com/admin/" target="_blank" className="textBtn" rel="noopener noreferrer">Franchise Login</a> | */}<Link href="/privacy" className="textBtn">Privacy Policy</Link> | <Link href="/tos" className="textBtn">Website Terms of Use</Link>
         </div>
       </div>
     </footer>
