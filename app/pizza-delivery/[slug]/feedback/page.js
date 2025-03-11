@@ -8,7 +8,7 @@ import tabStyles from '@/app/components/TabList.module.css';
 import moment from 'moment';
 
 const postType = 'locations';
-export async function generateMetadata({ params }) {
+{/*export async function generateMetadata({ params }) {
   const postId = params.slug;
   const metadata = await fetchCPTMetadataBySlug(postId, postType);
 
@@ -23,7 +23,29 @@ export async function generateMetadata({ params }) {
     },
     jsonld: metadata.yoastMetadata?.schema?.["@graph"]
   };
+}*/}
+
+export async function generateMetadata({ params }) {
+  const postId = params.slug;
+  const post = await fetchCPTBySlug(postId, postType); // Fetch full post data including ACF fields
+
+  const metadataBase = METADATABASE_API_URL;
+
+  // Check if ACF fields exist and use them, otherwise use default values
+  const title = post?.acf?.feedback_meta_title || `Customer Feedback for the ${post?.title || 'Location'}`;
+  const description = post?.acf?.feedback_meta_desc || `Tell us about your experience and read what our customers are saying about the ${post?.title || 'Location'}`;
+
+  return {
+    metadataBase,
+    title,
+    description,
+    openGraph: {
+      images: post?.yoast_head_json?.og_image ? [{ url: post.yoast_head_json.og_image[0].url }] : []
+    },
+    jsonld: post?.yoastMetadata?.schema?.["@graph"]
+  };
 }
+
 
 
 export default async function Page({ params }) {
