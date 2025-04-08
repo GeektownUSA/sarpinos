@@ -54,7 +54,7 @@
 }
 .item {
   position: relative;
-  padding: 0 4rem;
+  padding: 0 2rem;
   color: var(--red-color);
   transition: all 0.3s ease;
 }
@@ -65,6 +65,7 @@
 .title {
   color: var(--red-color);
   margin: 0;
+  font-size: clamp(1.2rem, 3vw, 1.575rem);
 }
 .paragraph {
   margin-top: 0.2rem;
@@ -72,3 +73,9 @@
 .code {
   color: var(--green-color);
 }
+.description {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #004f39;
+}
+
