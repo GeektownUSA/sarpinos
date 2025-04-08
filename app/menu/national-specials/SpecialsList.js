@@ -57,6 +57,7 @@ const SpecialsList = ({ posts, postType, categoryTitle, filterPostsBy }) => {
                 post={post}
                 acfTitle={post.acf.title_of_special}
                 postTitle={post.title.rendered}
+                postContent={post.content?.rendered}
                 category={post.acf.menu_category}
               />
             )
