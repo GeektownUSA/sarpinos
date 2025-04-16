@@ -23,9 +23,12 @@ export async function generateMetadata() {
 }
 
 
-export default async function Page({ params }) {
+export default async function Page({ searchParams }) {
+  
   let posts;
   let data;
+  let urlParamLocation = searchParams.location ? searchParams.location : "";
+  //console.log('search params: ',urlParamLocation);
   try {
     posts = await fetchCPTData(postType);
     data = await fetchPageData(pageId);
@@ -90,7 +93,7 @@ export default async function Page({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <DynamicMap posts={posts} data={data} />
+      <DynamicMap posts={posts} data={data} urlSearchLocation={urlParamLocation} />
     </>
   );
 }
