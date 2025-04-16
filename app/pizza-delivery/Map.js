@@ -16,7 +16,7 @@ const DynamicSearchPanel = dynamic(() => import('@/app/components/SearchPanel'))
 const DynamicList = dynamic(() => import('./List'));
 import he from 'he';
 
-const MapHero = ({ posts, data }) => {
+const MapHero = ({ posts, data, urlSearchLocation }) => {
   const { store } = useContext(StoreContext);
   const router = useRouter();
   const { selectedLocation, setSelectedLocation, userLocation, setUserLocation, locations, setLocations, getUserLocation, sortLocationsByDistance, setSelectedStore } = useLocation();
@@ -41,10 +41,12 @@ const MapHero = ({ posts, data }) => {
 
   // Get the selected location from the URL query parameters
   useEffect(() => {
-    if (router.query && router.query.location) {
-      setSelectedLocation(decodeURIComponent(router.query.location));
+    
+    if (urlSearchLocation) {
+      //console.log("url location set");
+      setSelectedLocation(decodeURIComponent(urlSearchLocation));
     }
-  }, [router.query, setSelectedLocation]);
+  }, [urlSearchLocation, setSelectedLocation]);
 
 
   useEffect(() => {
