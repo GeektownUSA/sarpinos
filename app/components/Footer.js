@@ -100,6 +100,7 @@ export default function Footer() {
                   <li><Link href="/menu/sarpinos-specialty-pizza">Full Menu</Link></li>
                   <li><Link href="/vegan-menu/vegan-pizza">Vegan Menu</Link></li>
                   <li><Link href="/catering">Catering</Link></li>
+                  <li><Link href="/SarpinosPizzeria_AllergenChart.pdf" target="_blank">Allergens</Link></li>
                 </ul>
                 <h4 className={styles.header}>Customer Service</h4>
                 <ul>
