@@ -14,7 +14,8 @@ const Specials = ({ data, specialsData }) => {
       <div className="full-page-container">
         <div className={styles.content}>
           <h2>{data.acf.national_specials_headline}</h2>
-          <p>{data.acf.national_specials_paragraph}</p>
+          {/*<p>{data.acf.national_specials_paragraph}</p>*/}
+          <p dangerouslySetInnerHTML={{ __html: data.acf.national_specials_paragraph }} />
         </div>
         <div className={styles.wrapper}>
           <div className={styles.container}>

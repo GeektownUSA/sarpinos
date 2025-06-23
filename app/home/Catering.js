@@ -31,7 +31,8 @@ const Catering = ({ data, cateringImage }) => {
             </div>
             <div className={`flex-align-center ${styles.content}`}>
               <h2>{data.acf.catering_headline}</h2>
-              <p>{data.acf.catering_paragraph}</p>
+              {/*<p>{data.acf.catering_paragraph}</p>*/}
+              <p dangerouslySetInnerHTML={{ __html: data.acf.catering_paragraph }} />
               <Link href="/catering" className="btn primary-btn"><span>Catering Info</span></Link>
             </div>
           </div>

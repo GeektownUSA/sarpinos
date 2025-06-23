@@ -101,7 +101,7 @@
   }
   .content {
     max-width: 480px;
-    padding: 100px 0 0;
+    padding: 66px 0 0;
     left: 48%;
   }
   .homepageHero p {
@@ -123,7 +123,7 @@
     transform: translate(-90%, 0);
   }
   .content {
-    padding: 175px 0 0;
+    padding: 140px 0 0;
     transform: translate(20%, 0);
   }
 }

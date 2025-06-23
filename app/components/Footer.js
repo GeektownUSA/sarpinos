@@ -28,21 +28,21 @@ export default function Footer() {
                     style={{ paddingBottom: '1rem' }}
                   />
                 </a>
-                <a href="https://play.google.com/store/apps/details?id=com.foodtec.sarpinosusa&hl=en_US" target="_blank" rel="noopener noreferrer">
+                {/*<a href="https://play.google.com/store/apps/details?id=com.foodtec.sarpinosusa&hl=en_US" target="_blank" rel="noopener noreferrer">
                   <Image
                     src={"/icon-google-play.png"}
                     alt="App Store"
                     width={136}
                     height={40}
                   />
-                </a>
+                </a>*/}
               </div>
 
               <Image
                 src={"/qr-code-app.png"}
                 alt="Scan the QR Code"
-                width={78}
-                height={97}
+                width={95}
+                height={118}
                 className={styles.qrCode}
               />
             </div>
@@ -72,14 +72,14 @@ export default function Footer() {
                       alt="Instagram"
                     />
                     </a>
-                  <a href="https://x.com/sarpinos_pizza" target="_blank" rel="noopener noreferrer">
+                  {/*<a href="https://x.com/sarpinos_pizza" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={"/icon-x.svg"}
                       width={20}
                       height={20}
                       alt="Twitter"
                     />
-                    </a>
+                    </a>*/}
                   <a href="https://www.youtube.com/@GosarpinosPizzeria/videos" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={"/icon-youtube.svg"}
