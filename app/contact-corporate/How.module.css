@@ -1,0 +1,85 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  z-index: 1;
+}
+.headline {
+  max-width: 300px;
+  text-align: center;
+  flex-shrink: 1;
+}
+.headline h2 {
+  margin: 0;
+}
+.steps {
+  display: inline-flex;
+  margin: 0;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+}
+.steps li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.circle {
+  width: calc(200px - 3rem);
+  height: 200px;
+  padding: 0 1.5rem;
+  margin: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  text-align: center;
+  list-style: none;
+  border-radius: 100%;
+  background: var(--red-color);
+}
+.arrow {
+  display: block;
+  width: 60px;
+  height: 12px;
+  background: url("/arrow-long.svg") no-repeat center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin: 0;
+}
+.steps li:last-child .arrow {
+  display: none;
+}
+p.title {
+  font-family: var(--museo-slab);
+  flex-shrink: 0;
+  margin: 2.2rem 0 1.5rem;
+}
+p.step {
+  font-family: var(--nexa-rust);
+  font-size: 1.3rem;
+  line-height: 1.1;
+  margin: 0;
+}
+@media screen and (max-width: 1023px) {
+  .container {
+    flex-direction: column;
+  }
+  .headline {
+    margin: 1rem auto;
+  }
+  .steps {
+    display: block;
+  }
+  .steps li {
+    display: block;
+    margin: 2rem 0.5rem;
+  }
+  .arrow {
+    transform: rotate(90deg);
+    margin: 0 auto;
+  }
+}

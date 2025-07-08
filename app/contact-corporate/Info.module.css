@@ -1,0 +1,35 @@
+.headline {
+  text-align: center;
+  max-width: 630px;
+  margin: 2rem auto 1rem;
+}
+.content {
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+}
+.colContainer {
+  margin: 3rem auto;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 4rem 1rem;
+  border-radius: 10px;
+}
+.container {
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .col {
+    padding: 3rem 0.5rem;
+  }
+  .container {
+    display: none;
+  }
+}

@@ -1,0 +1,26 @@
+.container {
+  max-width: 865px;
+  margin: 0 auto;
+}
+h2.headline {
+  text-align: center;
+  margin: 2rem auto 3rem;
+}
+.faqs {
+  border-bottom: 1px solid var(--green-color);
+}
+h4.title {
+  padding: 2rem 0;
+  border-top: 1px solid var(--green-color);
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  cursor: pointer;
+}
+h4.title:hover {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+.description {
+  padding: 0 0 2rem;
+  margin: 0;
+}

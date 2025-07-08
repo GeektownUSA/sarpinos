@@ -1,0 +1,87 @@
+.animation {
+  display: none;
+}
+.content {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  margin-top: 2rem;
+}
+.container {
+  max-width: 900px;
+}
+@media screen and (min-width: 757px) {
+  .animation {
+    position: relative;
+    width: 100%;
+    display: block;
+  }
+  .whiteFillHeart {
+    position: absolute;
+    top: 20px;
+    left: 40%;
+  }
+  .whiteFillHeart2 {
+    position: absolute;
+    top: 350px;
+    right: 10%;
+  }
+  .greenOutlineHeart {
+    position: absolute;
+    top: 80px;
+    left: 60%;
+  }
+  .title {
+    margin-top: 4rem;
+  }
+}
+.form label {
+  display: block;
+  margin: 0;
+}
+.form input,
+.form textarea,
+.form select {
+  border-radius: 10px;
+  padding: 10px;
+  width: calc(100% - 24px);
+  margin-top: 10px;
+}
+.form input[type="date"] {
+  width: calc(94% - 20px);
+  padding: 0 10px;
+  line-height: 36px;
+}
+.form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  padding: 0 10px;
+  line-height: 36px;
+  color: #000;
+}
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-flow: row wrap;
+  grid-gap: 10px;
+}
+.grow1 {
+  flex-grow: 1;
+}
+.w100 {
+  width: 100px;
+}
+.w50 {
+  width: 80px;
+}
