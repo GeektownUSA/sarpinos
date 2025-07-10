@@ -111,8 +111,10 @@ const Form = ({ data, posts }) => {
                   required
                   onChange={handleStoreChange}>
                   <option value="">Select a Location</option>
-                  {posts.map((p, index) => (
-                    <option key={index} value={p.acf.name} dangerouslySetInnerHTML={{ __html: p.title.rendered }} />
+                  {[...posts]
+                    .sort((a, b) => a.acf.name.localeCompare(b.acf.name))
+                    .map((p, index) => (
+                      <option key={index} value={p.acf.name} dangerouslySetInnerHTML={{ __html: p.title.rendered }} />
                   ))}
                 </select>
               </label>
