@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { StoreContext } from '../context/useStoreContext';
 import Image from 'next/image';
 import styles from './Form.module.css';
@@ -22,13 +22,13 @@ const Form = ({ data, posts }) => {
   const dateInputRef = useRef();
   const { store } = useContext(StoreContext);
 
-  useEffect(() => {
-    const today = new Date();
-    const nextYear = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
+  // useEffect(() => {
+    // const today = new Date();
+    // const nextYear = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
 
-    dateInputRef.current.min = formatDate(today);
-    dateInputRef.current.max = formatDate(nextYear);
-  }, []);
+    // dateInputRef.current.min = formatDate(today);
+    // dateInputRef.current.max = formatDate(nextYear);
+  // }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -86,49 +86,58 @@ const Form = ({ data, posts }) => {
   return (
     <>
       <div className={styles.content} dangerouslySetInnerHTML={{ __html: data.acf.how_it_works_content || '' }} />
-      <div className={`responsive-column-container ${styles.container}`}>
-        <div>
-          <h2 className={styles.title} dangerouslySetInnerHTML={{ __html: data.acf?.form_headline || '' }} />
-          <p dangerouslySetInnerHTML={{ __html: data.acf?.form_description || '' }} />
-          <div className={styles.animation}>
-            <Image src={'/heart-white-fill.svg'} width={45} height={45} className={`heartbeat-rotate ${styles.whiteFillHeart}`} alt="red fill heart" />
-            <Image src={'/heart-white-fill.svg'} width={43} height={43} className={`heartbeat-pulse ${styles.whiteFillHeart2}`} alt="green fill heart" />
-            <Image src={'/heart-green-outline.svg'} width={45} height={45} className={`slide-up-down ${styles.greenOutlineHeart}`} alt="green outline heart" />
-          </div>
-        </div>
+      <div className={`responsive-column-container `}>
+        
         <div>
           <form className={styles.form} onSubmit={handleSubmit} name="catering">
-            <p>
-              <label>Name *
-                <input placeholder="Name" type="text" name="name" required onChange={handleChange}/>
+            <p className={styles.columns}>
+              <label className={styles.grow1}>Name *
+                <input placeholder="" type="text" name="name" required onChange={handleChange}/>
+              </label>
+			  <label className={styles.w33}>What type of request is this? *
+                <select placeholder="Make a selection" name="event_request" required onChange={handleChange}>
+                  <option value="">Make a selection</option>
+                  <option value="Information request/genral request">Information request/genral request</option>
+                  <option value="I had a poor experience at one of your stores">I had a poor experience at one of your stores</option>
+                  <option value="I had a great experience at one of your stores">I had a great experience at one of your stores </option>
+                  <option value="Franchise information">Franchise information</option>
+				</select>  
+              </label>
+              <label className={styles.w33}>Store Location * 
+                <select
+                  defaultValue={store || "default"}
+                  placeholder="Location"
+                  name="event_store"
+                  required
+                  onChange={handleStoreChange}>
+                  <option value="">Select a Location</option>
+                  {posts.map((p, index) => (
+                    <option key={index} value={p.acf.name} dangerouslySetInnerHTML={{ __html: p.title.rendered }} />
+                  ))}
+                </select>
               </label>
             </p>
+            
             <p>
-              <label>Email *
-                <input placeholder="Email" type="email" name="email"
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                  required onChange={handleChange}/>
+              <label>Address
+                <input placeholder="" type="text" name="event_address" onChange={handleChange}/>
+				<span className={styles.smtxt}>Street Address</span>
               </label>
             </p>
-            <p>
-              <label>Phone *
-                <input placeholder="Phone" type="tel"
-                  name="phone"
-                  pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"
-                  required onChange={handleChange}/>
-              </label>
-            </p>
-            <p>
-              <label>Address of Event or Group Order
-                <input placeholder="Address" type="text" name="event_address" onChange={handleChange}/>
+			<p>
+			  <label>
+                <input placeholder="" type="text" name="event_address" onChange={handleChange}/>
+				<span className={styles.smtxt}>Address Line 2</span>
               </label>
             </p>
             <p className={styles.columns}>
-              <label className={styles.grow1}>City
-                <input placeholder="City" type="text" name="event_city" onChange={handleChange}/>
+              <label className={styles.grow1}>
+                <input placeholder="" type="text" name="event_city" onChange={handleChange}/>
+				<span className={styles.smtxt}>City</span>
               </label>
-              <label className={styles.w50}>State
-                <select placeholder="State" name="event_state" onChange={handleChange}>
+              <label className={styles.w33}>
+                <select placeholder="" name="event_state" onChange={handleChange}>
+                  <option value="" >Select state</option>
                   <option value="AL">AL</option>
                   <option value="AK">AK</option>
                   <option value="AZ">AZ</option>
@@ -183,40 +192,34 @@ const Form = ({ data, posts }) => {
                   <option value="WI">WI</option>
                   <option value="WY">WY</option>
                 </select>
+				<span className={styles.smtxt}>State</span>
               </label>
-              <label className={styles.w100}>Zip
-                <input placeholder="Zip" type="text" name="event_zip" onChange={handleChange}/></label>
+              <label className={styles.w33}>
+                <input placeholder="" type="text" name="event_zip" onChange={handleChange}/>
+				<span className={styles.smtxt}>Zip Code</span>
+				</label>
             </p>
-            <p>
-              <label>Your Store
-                <select
-                  defaultValue={store || "default"}
-                  placeholder="Location"
-                  name="event_store"
-                  required
-                  onChange={handleStoreChange}>
-                  <option value="default" disabled>Select a store</option>
-                  {posts.map((p, index) => (
-                    <option key={index} value={p.acf.name} dangerouslySetInnerHTML={{ __html: p.title.rendered }} />
-                  ))}
-                </select>
+			
+            <p className={styles.columns}>
+              <label className={styles.grow1}>Phone *
+                <input placeholder="" type="tel"
+                  name="phone"
+                  pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"
+                  required onChange={handleChange}/>
               </label>
+			  
+			  <label className={styles.w50}>Email *
+                <input placeholder="" type="email" name="email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  required onChange={handleChange}/>
+              </label>              
             </p>
+
+			
             <p>
-              <label>Date of Catering Needs
-                <input
-                  ref={dateInputRef}
-                  placeholder="Event Date"
-                  type="date"
-                  name="event_date"
-                  onChange={handleChange}
-                />
-              </label>
-            </p>
-            <p>
-              <label>How Can We Help?
+              <label>Comment/Request/Feedback
                 <textarea
-                  placeholder="Message"
+                  placeholder=""
                   name="message"
                   type="text"
                   rows="5"

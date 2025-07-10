@@ -3,7 +3,10 @@
 }
 .content {
   max-width: 900px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 1rem;
+}
+.form{
+	padding: 0.5rem 3rem 1rem;
 }
 
 .content h1,
@@ -17,6 +20,7 @@
 .container {
   max-width: 900px;
 }
+
 @media screen and (min-width: 757px) {
   .animation {
     position: relative;
@@ -55,7 +59,7 @@
   margin-top: 10px;
 }
 .form input[type="date"] {
-  width: calc(94% - 20px);
+  width: 98%;
   padding: 0 10px;
   line-height: 36px;
 }
@@ -67,14 +71,14 @@
   padding: 0 10px;
   line-height: 36px;
   color: #000;
+  width: 100%;
 }
+
 .columns {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: stretch;
-  flex-flow: row wrap;
-  grid-gap: 10px;
+	display: flex;
+    flex-wrap: wrap;
+    grid-gap: 24px;
+    width: 100%;
 }
 .grow1 {
   flex-grow: 1;
@@ -83,5 +87,33 @@
   width: 100px;
 }
 .w50 {
-  width: 80px;
+  width: 49%;
+}
+.w33{
+	width: 33.33%
+}
+.smtxt{
+	font-size: 14px;
+	line-height: 1.5;
+}
+@media screen and (max-width: 1100px) {
+.w33{
+	width: 31.33%
+}	
+}
+@media screen and (max-width: 992px) {
+.w33{
+	width: 100%
+}	
+}
+@media screen and (max-width: 768px) {
+.form{
+	padding: 0.5rem 0.5rem 1rem;
+}	
+.w50 {
+  width: 100%;
+}
+.w33{
+	width: 100%
+}
 }

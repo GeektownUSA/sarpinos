@@ -20,7 +20,7 @@
 
 .redFillHeart {
   position: absolute;
-  top: -1%;
+  top: 12%;
   right: calc(-2% + 60px);
   animation: heartSlideUpDown 3.5s infinite;
 }
@@ -32,8 +32,8 @@
 }
 .redOutlineHeart {
   position: absolute;
-  top: -5%;
-  right: -30px;
+  top: -4%;
+  right: 40px;
   animation: heartbeat-rotate 3.5s infinite;
 }
 .greenOutlineHeart {
@@ -96,4 +96,14 @@
   100% {
     transform: translateY(0) scale(1.2);
   }
+}
+
+@media screen and (max-width: 1024px) {
+.redFillHeart {
+  top: -1%;
+} 
+.redOutlineHeart {
+  top: -5%;
+  right: -30px;
+} 
 }
