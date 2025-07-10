@@ -318,6 +318,12 @@ a:focus {
   color: #11177f;
 }
 */
+
+.form-absolute{
+	margin-bottom: -28% !important;
+	z-index: 5;
+}
+
 .viewport {
   position: relative;
   width: 100%;
