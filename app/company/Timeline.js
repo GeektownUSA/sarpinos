@@ -36,6 +36,9 @@ const Timeline = ({ data }) => {
   return (
     <section className={`viewport`}>
       <div className={`full-page-container ${styles.container}`}>
+		<div className="responsive-single-column-container">
+			<h2 dangerouslySetInnerHTML={{ __html: data.acf.history_headline }} />
+		</div>	
         <div className="responsive-twothirds-column-container">
           {timeline && <div className={`${styles.content}`}>
             <div className={styles.innerHeroText}>
@@ -44,7 +47,7 @@ const Timeline = ({ data }) => {
                   <h4 className={styles.timelineYear}><strong>{item.year}</strong></h4>
                   <div className={styles.timelineInfo}>
                     <h4><strong>{item.title}</strong></h4>
-                    <p>{item.description}</p>
+					<div dangerouslySetInnerHTML={{ __html: item.description }}></div>
                   </div>
                 </div>
               ))}

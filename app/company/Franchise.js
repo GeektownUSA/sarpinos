@@ -17,7 +17,7 @@ const Franchise = ({ data, franchiseImage }) => {
           <div className="flex-align-center" style={{ padding: '2rem', maxWidth: '525px' }}>
             {data.acf.franchise_headline && <h2>{data.acf.franchise_headline}</h2>}
             {data.acf.franchise_content && <div dangerouslySetInnerHTML={{ __html: data.acf.franchise_content }}></div>}
-            {data.acf.franchise_link && <Link className='btn primary-btn' style={{ margin: '2rem auto 1rem 0' }} href={data.acf.franchise_link.url}><span>{data.acf.franchise_link.title}</span></Link>}
+            {data.acf.franchise_link && <Link className='btn primary-btn' style={{ margin: '2rem auto 1rem 0' }} href={data.acf.franchise_link.url} target="_blank"><span>{data.acf.franchise_link.title}</span></Link>}
           </div>
         </div>
       </div>
