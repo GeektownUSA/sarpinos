@@ -364,6 +364,10 @@ a:focus {
   margin: 0 auto;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
+.responsive-single-column-container {
+    padding: 0 6%;
+    margin-bottom: 30px;
+}
 .responsive-twothirds-column-container,
 .responsive-three-column-container {
   display: grid;
