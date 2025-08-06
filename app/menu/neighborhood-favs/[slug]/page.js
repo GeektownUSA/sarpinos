@@ -11,7 +11,7 @@ import ItemInfo from '../../ItemInfo';
 import ItemAllergens from '../../ItemAllergens';
 import styles from './Single.module.css';
 
-const pageId = 2125;
+const pageId = 2150;
 const postType = 'neighborhood-favs';
 export async function generateMetadata({ params }) {
   const postId = params.slug;

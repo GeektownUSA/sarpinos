@@ -34,14 +34,6 @@ const CalloutMobileApp = ({ calloutImage, calloutItem }) => {
                       style={{ paddingBottom: '1rem' }}
                     />
                     </a>
-                 <a href={'https://play.google.com/store/apps/details?id=com.foodtec.sarpinosusa&hl=en_US'} target="_blank" rel="noopener noreferrer">
-                    <Image
-                      src={"/icon-google-play.png"}
-                      alt="App Store"
-                      width={136}
-                      height={40}
-                    />
-                    </a>
                 </div>
 
                 <Image
