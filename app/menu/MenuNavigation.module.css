@@ -65,13 +65,19 @@ nav.dark::after {
   pointer-events: none;
 }
 .menuNavigation {
-  display: inline-flex;
-  margin: 0;
-  padding: 0 5rem 0 0;
-  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
   overflow-x: auto;
+  white-space: nowrap;
+  min-width: 0;
+  padding: 0 5rem 0 0;
   -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -ms-overflow-style: none;
+  scrollbar-width: thin;
+}
+.menuNavigation > * {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 .menuLabel {
   padding: 0 1.5rem;
