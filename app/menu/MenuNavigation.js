@@ -37,14 +37,14 @@ export default function MenuNavigation({ mode, activeItem }) {
     { id: "build-your-own", label: "Create Your Own", handler: handleNav("build-your-own", "/menu/create-your-own"), href: "/menu/create-your-own" },
     { id: "pizza", label: "Pizza", handler: handleNav("sarpinos-specialty-pizza", "/menu/sarpinos-specialty-pizza"), href: "/menu/sarpinos-specialty-pizza" },
     { id: "deep-dish", label: "Deep Dish", handler: handleNav("deep-dish-pizza", "/menu/deep-dish-pizza"), href: "/menu/deep-dish-pizza" },
+	{ id: "neighborhood-favs", label: "Neighborhood Favorites", handler: handleNav("neighborhood-favs", "/menu/neighborhood-favs"), href: "/menu/neighborhood-favs" },
     { id: "calzones", label: "Calzones", handler: handleNav("calzones", "/menu/calzones"), href: "/menu/calzones" },
     { id: "wings-apps", label: "Wings & Appetizers", handler: handleNav("wings-apps", "/menu/wings-apps"), href: "/menu/wings-apps" },
     { id: "salads", label: "Salads", handler: handleNav("salads", "/menu/salads"), href: "/menu/salads" },
     { id: "sandwiches", label: "Sandwiches", handler: handleNav("sandwiches", "/menu/sandwiches"), href: "/menu/sandwiches" },
     { id: "pastas", label: "Pastas", handler: handleNav("pastas", "/menu/pastas"), href: "/menu/pastas" },
     { id: "breadsticks", label: "Breadsticks", handler: handleNav("breadsticks", "/menu/breadsticks"), href: "/menu/breadsticks" },
-    { id: "desserts", label: "Desserts", handler: handleNav("desserts", "/menu/desserts"), href: "/menu/desserts" },
-	{ id: "neighborhood-favs", label: "Neighborhood Favorites", handler: handleNav("neighborhood-favs", "/menu/neighborhood-favs"), href: "/menu/neighborhood-favs" }
+    { id: "desserts", label: "Desserts", handler: handleNav("desserts", "/menu/desserts"), href: "/menu/desserts" }
   ];
 
   useEffect(() => {
