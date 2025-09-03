@@ -43,30 +43,39 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
   }, [filterPostsBy]);
 
   useEffect(() => {
-    // Filter posts based on selected category
-    const filtered = selectedCategory === `All`
-      ? posts
-      : posts.filter(post => post.acf.menu_category?.includes(selectedCategory));
+	  // Filter posts based on selected category
+	  const filtered = selectedCategory === `All`
+		? posts
+		: posts.filter(post => post.acf.menu_category?.includes(selectedCategory));
 
-    // Prioritize 'Popular' posts
-    const popularPosts = filtered.filter(post => post.acf.menu_category?.includes('Popular'));
-    const otherPosts = filtered.filter(post => !post.acf.menu_category?.includes('Popular'));
+	  // Prioritize 'Popular' posts
+	  const popularPosts = filtered.filter(post => post.acf.menu_category?.includes('Popular'));
+	  const otherPosts = filtered.filter(post => !post.acf.menu_category?.includes('Popular'));
 
-    // Randomize the order of popularPosts and otherPosts
-    const randomizedPopularPosts = popularPosts.sort(() => Math.random() - 0.5);
-    const randomizedOtherPosts = otherPosts.sort(() => Math.random() - 0.5);
+	  // Sort the posts alphabetically for categories other than 'All'
+	  const sortedOtherPosts = otherPosts.sort((a, b) => {
+		const titleA = a.title.rendered.toLowerCase();
+		const titleB = b.title.rendered.toLowerCase();
+		if (titleA < titleB) return -1;
+		if (titleA > titleB) return 1;
+		return 0;
+	  });
 
-    // Combine the posts
-    const combinedPosts = [...randomizedPopularPosts, ...randomizedOtherPosts];
+	  // Randomize the order of popularPosts
+	  const randomizedPopularPosts = popularPosts.sort(() => Math.random() - 0.5);
 
-    // Set filteredPosts to combinedPosts
-    setFilteredPosts(combinedPosts);
+	  // Combine the posts
+	  const combinedPosts = [...randomizedPopularPosts, ...sortedOtherPosts];
 
-    // Fetch images for the first 6 posts
-    fetchImages(combinedPosts.slice(0, 6)).then(posts => {
-      setVisiblePosts(posts);
-    });
-  }, [selectedCategory, posts, fetchImages, postTypeSlug]);
+	  // Set filteredPosts to combinedPosts
+	  setFilteredPosts(combinedPosts);
+
+	  // Fetch images for the first 6 posts
+	  fetchImages(combinedPosts.slice(0, 6)).then(posts => {
+		setVisiblePosts(posts);
+	  });
+	}, [selectedCategory, posts, fetchImages, postTypeSlug]);
+
 
   // LAZY LOADING
   // load more posts as the user scrolls
