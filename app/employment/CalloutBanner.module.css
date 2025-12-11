@@ -1,0 +1,62 @@
+.bkg {
+  background-image: url("/pizza-background-callout-vertical.jpg");
+  background-size: cover;
+  padding: calc(2vw + 2rem) 0;
+  color: var(--cream-color);
+  min-height: 815px;
+  display: flex;
+  align-items: flex-end;
+}
+.bkgImage {
+  display: none;
+}
+.callout {
+  width: 90%;
+  position: relative;
+  margin: 0 auto;
+  padding-top: calc(30vw + 60px);
+}
+.column {
+  padding: 0 1rem;
+  text-align: left;
+  max-width: 550px;
+}
+
+@media screen and (min-width: 768px) {
+  .bkg {
+    background-image: none;
+  }
+  .bkgImage {
+    display: block;
+    object-fit: cover;
+  }
+  .callout {
+    width: 45%;
+    position: relative;
+    right: 0;
+    margin: 0 0 0 auto;
+    padding-top: 0;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+.bkg {
+  min-height: 750px;
+}  
+}
+@media screen and (max-width: 1200px) {
+.bkg {
+  min-height: 670px;
+}  
+}
+@media screen and (max-width: 992px) {
+.bkg {
+  min-height: 650px;
+}  
+}
+
+@media screen and (max-width: 767px) {
+.bkg {
+  min-height: 450px;
+}  
+}
