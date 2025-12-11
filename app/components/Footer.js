@@ -120,6 +120,7 @@ export default function Footer() {
                 </ul>
                 <h4 className={styles.header}>Contact Us</h4>
                 <ul>
+                  <li><Link href="/contact-corporate">Contact Corporate</Link></li>
                   <li>Phone: <Link href="tel:018473746300">847.374.6300</Link></li>
                   <li>Email: <Link href="mailto:us@gosarpinos.com">us@gosarpinos.com</Link></li>
                 </ul>

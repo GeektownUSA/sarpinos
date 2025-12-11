@@ -1108,28 +1108,28 @@ export default function Form({ data, posts }) {
 					 </p> 
 					</>
 				)}
+				
+				<p>The information I have supplied is complete and accurate. I authorize the Company to verify this information now and in the future, and understand that I may be terminated at any time if my driving record does not meet Company requirements.</p>
+			
+				<p>If I am employed as a delivery driver by the Company, I also agree to maintain, at my cost, personal auto liability insurance at the mandatory state liability limits for the state(s) in which I will be driving. I agree to renew my drivers license before expiration. I understand that Sarpinos USA and the Company are not responsible for damage to my vehicle, and I agree to have continuously in force auto liability insurance that will cover my vehicle while working here. I agree that it is my responsibility to consult with my insurance agent to maintain adequate insurance.</p>
+				
+				<h5>I UNDERSTAND THAT Sarpinos USA AND THE COMPANY DO NOT WANT ME TO EVER SPEED OR DRIVE RECKLESSLY IN ANY WAY. I WILL REPORT ANY INSTRUCTIONS TO DO OTHERWISE TO THE Sarpinos USA CORPORATE OFFICE.</h5>
+
+				<h5>I AGREE TO OBEY THE FOLLOWING POLICIES WHILE WORKING:</h5>
+				
+				<ol>
+					<li>To always drive courteously, safely, and follow defensive driving techniques while obeying all laws.</li>
+					<li>To notify the Company if there is any change in my car insurance.</li>
+					<li>To notify the Company if my driving privileges are restricted, suspended, or revoked, and in the event I receive a ticket, on or off the job.</li>
+					<li>To always use my seat belt while working here and keep my radio/music system to a volume level my supervisor finds acceptable at all times.</li>
+					<li>To be employed here as a driver it is up to me to supply a clean, safe, dependable vehicle with proper insurance. I realize that if I am employed as a driver, my employment can be terminated if my car is not in proper working order.</li>
+					<li>To never allow anyone else to ride with me while working, unless instructed by my supervisor.</li>
+					<li>To never eat or drink while driving.</li>
+					<li>To discuss with my supervisor any incident involving a vehicle that happens while working, no matter whose fault, and whether or not there were any injuries.</li>
+				</ol>
 			  
 				</>
 			)}
-			
-			<p>The information I have supplied is complete and accurate. I authorize the Company to verify this information now and in the future, and understand that I may be terminated at any time if my driving record does not meet Company requirements.</p>
-			
-			<p>If I am employed as a delivery driver by the Company, I also agree to maintain, at my cost, personal auto liability insurance at the mandatory state liability limits for the state(s) in which I will be driving. I agree to renew my drivers license before expiration. I understand that Sarpinos USA and the Company are not responsible for damage to my vehicle, and I agree to have continuously in force auto liability insurance that will cover my vehicle while working here. I agree that it is my responsibility to consult with my insurance agent to maintain adequate insurance.</p>
-			
-			<h5>I UNDERSTAND THAT Sarpinos USA AND THE COMPANY DO NOT WANT ME TO EVER SPEED OR DRIVE RECKLESSLY IN ANY WAY. I WILL REPORT ANY INSTRUCTIONS TO DO OTHERWISE TO THE Sarpinos USA CORPORATE OFFICE.</h5>
-
-			<h5>I AGREE TO OBEY THE FOLLOWING POLICIES WHILE WORKING:</h5>
-			
-			<ol>
-				<li>To always drive courteously, safely, and follow defensive driving techniques while obeying all laws.</li>
-				<li>To notify the Company if there is any change in my car insurance.</li>
-				<li>To notify the Company if my driving privileges are restricted, suspended, or revoked, and in the event I receive a ticket, on or off the job.</li>
-				<li>To always use my seat belt while working here and keep my radio/music system to a volume level my supervisor finds acceptable at all times.</li>
-				<li>To be employed here as a driver it is up to me to supply a clean, safe, dependable vehicle with proper insurance. I realize that if I am employed as a driver, my employment can be terminated if my car is not in proper working order.</li>
-				<li>To never allow anyone else to ride with me while working, unless instructed by my supervisor.</li>
-				<li>To never eat or drink while driving.</li>
-				<li>To discuss with my supervisor any incident involving a vehicle that happens while working, no matter whose fault, and whether or not there were any injuries.</li>
-			</ol>
 			
 			<div className="break-form">
 				<h3>Legal Agreements and Signature</h3>
