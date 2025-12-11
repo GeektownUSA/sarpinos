@@ -69,6 +69,9 @@
     margin-bottom: 20px;
     padding-bottom: 5px;
 }
+.form p div {
+	border-bottom: 0;
+}
 .form div h3{
     margin-bottom: 0;
 }
@@ -93,6 +96,7 @@
     grid-gap: 24px;
     width: 100%;
 }
+
 .grow1 {
   flex-grow: 1;
 }
@@ -100,7 +104,7 @@
   width: 100px;
 }
 .w50 {
-  width: 49%;
+  width: 48%;
 }
 .w33{
 	width: 33.33%
@@ -109,7 +113,10 @@
 	font-size: 14px;
 	line-height: 1.5;
 }
-
+.form ol{
+	list-style: auto;
+	padding-left: 15px;
+}
 @media screen and (max-width: 1100px) {
 .w33{
 	width: 31.33%
@@ -129,5 +136,8 @@
 }
 .w33{
 	width: 100%
+}
+.form canvas {
+    width: 100%;
 }
 }

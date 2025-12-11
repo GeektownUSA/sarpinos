@@ -360,8 +360,23 @@ nav.main-navigation .subitem a.navlocator-btn {
   }
 }
 
-@media all and (min-width: 1210px) and (max-width: 1430px) {
+@media all and (min-width: 1365px) and (max-width: 1430px) {
 ul.desktopmenu li.item {
     padding: 15px calc(var(--navbar-padding));
 }	
+}
+@media all and (min-width: 1210px) and (max-width: 1365px) {
+nav.main-navigation a:not(.primary-btn) {
+    font-size: 13px;
+}
+ul.desktopmenu li.item {
+    padding: 15px 9px;
+}
+.navbar button {
+    font-size: 20px;
+    padding: 15px 10px 10px;
+}
+ul.desktopmenu {
+    margin: 0 0 0 10px;	
+}
 }

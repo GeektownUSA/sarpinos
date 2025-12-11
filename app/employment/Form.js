@@ -5,9 +5,10 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import styles from './Form.module.css';
 
+// Load signature pad only on client
 const SignatureCanvas = dynamic(() => import('react-signature-canvas'), { ssr: false });
 
-const Form = ({ data, posts }) => {
+export default function Form({ data, posts }) {
   const [formData, setFormData] = useState({
     form: 'employment',
     cuurent_date: '',
@@ -89,7 +90,7 @@ const Form = ({ data, posts }) => {
 	signature: '',
 	today_date: '',
   });
-  const dateInputRef = useRef();
+  
   const { store } = useContext(StoreContext);
   const signaturePadRef = useRef(null);
   
@@ -127,63 +128,24 @@ const Form = ({ data, posts }) => {
     setSelectedOption7(e.target.value);
   };
 
+  const [currentDate, setCurrentDate] = useState('');
+  const dateInputRef = useRef();
+
+  const sigCanvas = useRef(null);
+  const [mounted, setMounted] = useState(false);    // ensure client mount
+  const [canvasKey, setCanvasKey] = useState(0);    // fallback to force rerender/reset
+
   useEffect(() => {
+    setMounted(true);
     const today = new Date();
     const nextYear = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
 
     dateInputRef.current.min = formatDate(today);
     dateInputRef.current.max = formatDate(nextYear);
+
+    // Autofill today's date
+    setCurrentDate(formatDate(today));
   }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-  
-  const handleSignatureClear = () => {
-    const pad = signaturePadRef.current;
-    if (pad) {
-      pad.clear(); // clears strokes on the signature pad
-      setFormData((prev) => ({ ...prev, signature: '' })); // clears saved base64 signature in state
-    }
-  };
-  
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-	
-	const pad = signaturePadRef.current;
-    let signatureBase64 = '';
-
-    // Only capture the signature at submit time
-    if (pad && !pad.isEmpty()) {
-      signatureBase64 = pad.toDataURL(); // Get the signature as base64
-    }
-
-    const payload = { ...formData, signature: signatureBase64 };
-	
-	const updatedFormData = {
-      ...formData,
-      signature: signaturePadRef.current ? signaturePadRef.current.toDataURL() : '', // Ensure the ref is available
-    };
-	
-    const response = await fetch('/api/submit-form', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    });
-
-    if (response.ok) {
-      window.location.href = window.location.origin + '/success';
-    } else {
-      alert('Error submitting form');
-    }
-  };
 
   const formatDate = (date) => {
     const day = String(date.getDate()).padStart(2, '0');
@@ -193,6 +155,53 @@ const Form = ({ data, posts }) => {
     return `${year}-${month}-${day}`;
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const clearSignature = () => {
+    const pad = sigCanvas.current;
+    if (pad && typeof pad.clear === 'function') {
+      try {
+        pad.clear();
+        setFormData((prev) => ({ ...prev, signature: '' }));
+      } catch (err) {
+        // Fallback: force rerender to reset canvas
+        setCanvasKey((k) => k + 1);
+        setFormData((prev) => ({ ...prev, signature: '' }));
+      }
+    } else {
+      // If pad not ready, fallback reset by rerendering
+      setCanvasKey((k) => k + 1);
+      console.log('Signature pad not ready yet — forcing reset via rerender');
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const pad = sigCanvas.current;
+
+    let signatureBase64 = '';
+    if (pad && typeof pad.isEmpty === 'function' && !pad.isEmpty()) {
+      signatureBase64 = pad.toDataURL();
+    }
+
+    const updatedFormData = { ...formData, signature: signatureBase64 };
+
+    const response = await fetch('/api/submit-form', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedFormData),
+    });
+
+    if (response.ok) {
+      window.location.href = window.location.origin + '/success';
+    } else {
+      alert('Error submitting form');
+    }
+  };
+  
   // SET STORE EMAIL
   const [storeEmail, setStoreEmail] = useState('');
 
@@ -212,24 +221,9 @@ const Form = ({ data, posts }) => {
     });
 
   };
-  
-  const handleClearSignature = () => {
-    if (signaturePadRef.current) {
-      signaturePadRef.current.clear();
-    }
-    setFormData({ ...formData, signature: '' });
-  };
-
-  const handleSaveSignature = () => {
-    if (signaturePadRef.current) {
-      const signatureDataUrl = signaturePadRef.current.toDataURL();
-      setFormData({ ...formData, signature: signatureDataUrl });
-    }
-  };
-
 
   return (
-    <>
+	<>
       <div className={styles.content} dangerouslySetInnerHTML={{ __html: data.acf.how_it_works_content || '' }} />
       <div className={`responsive-column-container `}>
         
@@ -237,10 +231,18 @@ const Form = ({ data, posts }) => {
           <form className={styles.form} onSubmit={handleSubmit} name="employment">
             
 			<p className={styles.columns}>
-              <label className={styles.w50}>Date *
-                <input ref={dateInputRef} placeholder="" type="date" name="cuurent_date" required onChange={handleChange} />
-              </label>
-            </p>
+			  <label className={styles.w50}>Date *
+				<input 
+				  ref={dateInputRef} 
+				  placeholder="" 
+				  type="date" 
+				  name="current_date" 
+				  required 
+				  value={currentDate} 
+				  onChange={handleChange} 
+				/>
+			  </label>
+			</p>
 			
 			<div className="break-form">
 				<h3>Personal Info</h3>
@@ -671,15 +673,15 @@ const Form = ({ data, posts }) => {
 			<h4>Second Most Recent Employer</h4>
 			
 			<p className={styles.columns}>
-              <label className={styles.w50}>Name of Employer *
-                <input placeholder="" type="text" name="second_employer_name" required onChange={handleChange}/>
+              <label className={styles.w50}>Name of Employer
+                <input placeholder="" type="text" name="second_employer_name" onChange={handleChange}/>
               </label>  
 			  
-			  <label className={styles.grow1}>Phone *
+			  <label className={styles.grow1}>Phone
                 <input placeholder="" type="tel"
                   name="second_employer_phone"
                   pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"
-                  required onChange={handleChange}/>
+                  onChange={handleChange}/>
               </label>
 			        
             </p>
@@ -783,7 +785,7 @@ const Form = ({ data, posts }) => {
             </p>
 			
             <p>
-              <label>Reason for leaving *
+              <label>Reason for leaving
                 <textarea
                   placeholder=""
                   name="second_leaving_reason"
@@ -797,15 +799,15 @@ const Form = ({ data, posts }) => {
 			<h4>Other Employer</h4>
 			
 			<p className={styles.columns}>
-              <label className={styles.w50}>Name of Employer *
-                <input placeholder="" type="text" name="other_employer_name" required onChange={handleChange}/>
+              <label className={styles.w50}>Name of Employer
+                <input placeholder="" type="text" name="other_employer_name" onChange={handleChange}/>
               </label>  
 			  
-			  <label className={styles.grow1}>Phone *
+			  <label className={styles.grow1}>Phone
                 <input placeholder="" type="tel"
                   name="other_employer_phone"
                   pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"
-                  required onChange={handleChange}/>
+                  onChange={handleChange}/>
               </label>
 			        
             </p>
@@ -909,7 +911,7 @@ const Form = ({ data, posts }) => {
             </p>
 			
             <p>
-              <label>Reason for leaving *
+              <label>Reason for leaving
                 <textarea
                   placeholder=""
                   name="other_leaving_reason"
@@ -933,10 +935,65 @@ const Form = ({ data, posts }) => {
                 <input placeholder="" type="text" name="explanation" onChange={handleChange}/>
 				</label>
             </p>
+			
+			<p className={styles.columns}>
+              <label className={styles.grow1}>Start Date
+                <input ref={dateInputRef} placeholder="" type="date" name="start_date" onChange={handleChange}/>
+              </label>
+              <label className={styles.grow1}>End Date
+                <input ref={dateInputRef} placeholder="" type="date" name="end_date" onChange={handleChange}/>
+              </label>
+              <label className={styles.grow1}>Explanation
+                <input placeholder="" type="text" name="explanation" onChange={handleChange}/>
+				</label>
+            </p>
+			
+			<p className={styles.columns}>
+              <label className={styles.grow1}>Start Date
+                <input ref={dateInputRef} placeholder="" type="date" name="start_date" onChange={handleChange}/>
+              </label>
+              <label className={styles.grow1}>End Date
+                <input ref={dateInputRef} placeholder="" type="date" name="end_date" onChange={handleChange}/>
+              </label>
+              <label className={styles.grow1}>Explanation
+                <input placeholder="" type="text" name="explanation" onChange={handleChange}/>
+				</label>
+            </p>
+			
 			<div className="break-form">
 				<h3>References</h3>
 				<p>List up to 3 people not related to you, whom you have known at least one year.</p>
 			</div>	
+			
+			<p className={styles.columns}>
+              <label className={styles.grow1}>Name *
+                <input placeholder="" type="text" name="ref_name" required onChange={handleChange}/>
+              </label>
+              <label className={styles.grow1}>Address *
+                <input placeholder="" type="text" name="ref_address" required onChange={handleChange}/>
+              </label>
+              <label className={styles.grow1}>Phone *
+                <input placeholder="Phone" type="tel" name="ref_phone" required onChange={handleChange}/>
+				</label>
+				<label className={styles.grow1}>Years Acquainted *
+                <input placeholder="" type="text" name="ref_years_acquainted" required onChange={handleChange}/>
+				</label>
+            </p>
+			
+			<p className={styles.columns}>
+              <label className={styles.grow1}>Name
+                <input placeholder="" type="text" name="ref_name" onChange={handleChange}/>
+              </label>
+              <label className={styles.grow1}>Address
+                <input placeholder="" type="text" name="ref_address" onChange={handleChange}/>
+              </label>
+              <label className={styles.grow1}>Phone
+                <input placeholder="Phone" type="tel" name="ref_phone" onChange={handleChange}/>
+				</label>
+				<label className={styles.grow1}>Years Acquainted
+                <input placeholder="" type="text" name="ref_years_acquainted" onChange={handleChange}/>
+				</label>
+            </p>
 			
 			<p className={styles.columns}>
               <label className={styles.grow1}>Name
@@ -1055,6 +1112,25 @@ const Form = ({ data, posts }) => {
 				</>
 			)}
 			
+			<p>The information I have supplied is complete and accurate. I authorize the Company to verify this information now and in the future, and understand that I may be terminated at any time if my driving record does not meet Company requirements.</p>
+			
+			<p>If I am employed as a delivery driver by the Company, I also agree to maintain, at my cost, personal auto liability insurance at the mandatory state liability limits for the state(s) in which I will be driving. I agree to renew my drivers license before expiration. I understand that Sarpinos USA and the Company are not responsible for damage to my vehicle, and I agree to have continuously in force auto liability insurance that will cover my vehicle while working here. I agree that it is my responsibility to consult with my insurance agent to maintain adequate insurance.</p>
+			
+			<h5>I UNDERSTAND THAT Sarpinos USA AND THE COMPANY DO NOT WANT ME TO EVER SPEED OR DRIVE RECKLESSLY IN ANY WAY. I WILL REPORT ANY INSTRUCTIONS TO DO OTHERWISE TO THE Sarpinos USA CORPORATE OFFICE.</h5>
+
+			<h5>I AGREE TO OBEY THE FOLLOWING POLICIES WHILE WORKING:</h5>
+			
+			<ol>
+				<li>To always drive courteously, safely, and follow defensive driving techniques while obeying all laws.</li>
+				<li>To notify the Company if there is any change in my car insurance.</li>
+				<li>To notify the Company if my driving privileges are restricted, suspended, or revoked, and in the event I receive a ticket, on or off the job.</li>
+				<li>To always use my seat belt while working here and keep my radio/music system to a volume level my supervisor finds acceptable at all times.</li>
+				<li>To be employed here as a driver it is up to me to supply a clean, safe, dependable vehicle with proper insurance. I realize that if I am employed as a driver, my employment can be terminated if my car is not in proper working order.</li>
+				<li>To never allow anyone else to ride with me while working, unless instructed by my supervisor.</li>
+				<li>To never eat or drink while driving.</li>
+				<li>To discuss with my supervisor any incident involving a vehicle that happens while working, no matter whose fault, and whether or not there were any injuries.</li>
+			</ol>
+			
 			<div className="break-form">
 				<h3>Legal Agreements and Signature</h3>
 			</div>
@@ -1065,17 +1141,27 @@ const Form = ({ data, posts }) => {
 
 			<p>I UNDERSTAND THAT NOTHING IN THIS EMPLOYMENT APPLICATION, IN COMPANY STATEMENTS OF PERSONNEL POLICIES, OR IN MY COMMUNICATION WITH ANY EMPLOYEE OR OFFICIAL IS INTENDED TO CREATE AN EMPLOYMENT CONTRACT BETWEEN THE COMPANY AND ME, AND THAT MY EMPLOYMENT WITH THE COMPANY IS ENTERED INTO VOLUNTARILY, AND THAT I MAY RESIGN AT ANY TIME. SIMILARLY, MY EMPLOYMENT MAYBE TERMINATED WITH OR WITHOUT CAUSE AT ANY TIME WITHOUT PRIOR NOTICE.</p>
 			
-			<p>
-              <label className={styles.signaturePad}>
-                  <SignatureCanvas
-                    ref={signaturePadRef}
-                    backgroundColor="white"
-                    penColor="black"
-                    canvasProps={{ width: 500, height: 200, className: 'signature-canvas' }}
-                  />
-                <button type="button" onClick={handleSignatureClear}>Clear Signature</button>
-              </label>
-            </p>
+			<p className={styles.columns}>
+				<div className={styles.w50}>
+				  {mounted ? (
+					<SignatureCanvas
+					  key={canvasKey} 
+					  ref={(ref) => { sigCanvas.current = ref; }}
+					  penColor="black"
+					  backgroundColor="white"
+					  canvasProps={{ width: 500, height: 200, className: 'sigCanvas' }}
+					/>
+				  ) : (
+					<p>Loading signature pad...</p>
+				  )}
+				  
+				  <p style={{ marginTop: 10 }}>
+					<button type="button" onClick={clearSignature} disabled={!mounted}>
+					  Clear Signature
+					</button>
+				  </p>
+				</div>
+		    </p>
 			
 			<p className={styles.columns}>
               <label className={styles.w50}>Todays Date *
@@ -1095,6 +1181,4 @@ const Form = ({ data, posts }) => {
       </div>
     </>
   );
-};
-
-export default Form;
+}

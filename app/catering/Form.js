@@ -22,13 +22,13 @@ const Form = ({ data, posts }) => {
   const dateInputRef = useRef();
   const { store } = useContext(StoreContext);
 
-  useEffect(() => {
-    const today = new Date();
-    const nextYear = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
+  // useEffect(() => {
+    // const today = new Date();
+    // const nextYear = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
 
-    dateInputRef.current.min = formatDate(today);
-    dateInputRef.current.max = formatDate(nextYear);
-  }, []);
+    // dateInputRef.current.min = formatDate(today);
+    // dateInputRef.current.max = formatDate(nextYear);
+  // }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
