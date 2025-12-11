@@ -238,6 +238,8 @@ export default function Navigation() {
               className={`${activeMobileMenus['Locations'] ? 'active' : ''}`}
               href="/pizza-delivery" onClick={(e) => { e.preventDefault(); handleSubmenu('Locations') }}>Find Locations</Link>
           </li>
+		  <li className="item"><Link href="/contact-corporate">Contact</Link></li>
+		  <li className="item"><Link href="/employment">Employment</Link></li>
         </ul>
         <ul className="desktoplinks">
           <li className="item button heart">
@@ -420,6 +422,8 @@ export default function Navigation() {
             </li>
             <li className={`${stylesMobile.item}`}><Link href="/catering" onClick={handleMobile}>Catering</Link></li>
             <li className={`${stylesMobile.item}`}><Link href="/pizza-delivery" onClick={handleMobile}>Find Locations</Link></li>
+			<li className={`${stylesMobile.item}`}><Link href="/contact-corporate" onClick={handleMobile}>Contact</Link></li>
+			<li className={`${stylesMobile.item}`}><Link href="/employment" onClick={handleMobile}>Employment</Link></li>
           </ul>
           <ul className={`${stylesMobile.item} ${stylesMobile.sliderSubmenu} ${activeMobileMenus['About'] ? stylesMobile.active : ''}`}>
             <li className={`subitem ${stylesMobile.closeSubmenu}`}>

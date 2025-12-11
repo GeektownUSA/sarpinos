@@ -114,7 +114,6 @@ export default function Footer() {
               <div>
                 <h4 className={styles.header}>About Us</h4>
                 <ul>
-                  <li><a href="https://jobs.gosarpinos.com/" target="_blank" rel="noopener noreferrer">Careers</a></li>
                   <li><a href="https://sarpinosfranchise.com/" target="_blank" rel="noopener noreferrer">Franchising Information</a></li>
                   <li><Link href="/pizza-delivery">Location Finder</Link></li>
                   <li><Link href="/download-pizza-app">Mobile App</Link></li>

@@ -196,7 +196,7 @@ nav.main-navigation .subitem a.navlocator-btn {
     flex: 1;
   }
   ul.desktopmenu li.item {
-    padding: 15px calc(var(--navbar-padding) * 2);
+    padding: 15px calc(var(--navbar-padding) * 1.5);
   }
 
   ul.desktopmenu li.item a:hover {
@@ -358,4 +358,10 @@ nav.main-navigation .subitem a.navlocator-btn {
   nav.main-navigation .subitem a.navlocator-btn {
     padding: 0.6rem 1rem 0.4rem;
   }
+}
+
+@media all and (min-width: 1210px) and (max-width: 1430px) {
+ul.desktopmenu li.item {
+    padding: 15px calc(var(--navbar-padding));
+}	
 }

@@ -21,7 +21,17 @@ export default async function handler(req, res) {
             emailSubject = Templates.cateringThankYouSubject();
             emailManagerContent = Templates.cateringManagerEmail(data);
             emailManagerSubject = Templates.cateringManagerSubject();
-        } else {
+        } else if (data.form == 'contact') {
+            emailContent = Templates.contactThankYouEmail(data);
+            emailSubject = Templates.contactThankYouSubject();
+            emailManagerContent = Templates.contactManagerEmail(data);
+            emailManagerSubject = Templates.contactManagerSubject();
+        } else if (data.form == 'employment') {
+            emailContent = Templates.employmentThankYouEmail(data);
+            emailSubject = Templates.employmentThankYouSubject();
+            emailManagerContent = Templates.employmentManagerEmail(data);
+            emailManagerSubject = Templates.employmentManagerSubject();
+        }else {
             emailContent = Templates.signupEmail(data);
             emailSubject = Templates.signupSubject();
             emailTo = 'us@sarpinos-usa.com';

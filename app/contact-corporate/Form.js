@@ -6,16 +6,17 @@ import styles from './Form.module.css';
 
 const Form = ({ data, posts }) => {
   const [formData, setFormData] = useState({
-    form: 'catering',
+    form: 'contact',
     name: '',
+    request: '',
     email: '',
     phone: '',
-    event_address: '',
-    event_city: '',
-    event_state: 'AL',
-    event_zip: '',
+    address: '',
+    address2: '',
+    city: '',
+    state: 'AL',
+    zip: '',
     store: '',
-    event_date: '',
     message: '',
     managers_email: '',
   });
@@ -89,13 +90,13 @@ const Form = ({ data, posts }) => {
       <div className={`responsive-column-container `}>
         
         <div>
-          <form className={styles.form} onSubmit={handleSubmit} name="catering">
+          <form className={styles.form} onSubmit={handleSubmit} name="contact">
             <p className={styles.columns}>
               <label className={styles.grow1}>Name *
                 <input placeholder="" type="text" name="name" required onChange={handleChange}/>
               </label>
 			  <label className={styles.w33}>What type of request is this? *
-                <select placeholder="Make a selection" name="event_request" required onChange={handleChange}>
+                <select placeholder="Make a selection" name="request" required onChange={handleChange}>
                   <option value="">Make a selection</option>
                   <option value="Information request/genral request">Information request/genral request</option>
                   <option value="I had a poor experience at one of your stores">I had a poor experience at one of your stores</option>
@@ -122,23 +123,23 @@ const Form = ({ data, posts }) => {
             
             <p>
               <label>Address
-                <input placeholder="" type="text" name="event_address" onChange={handleChange}/>
+                <input placeholder="" type="text" name="address" onChange={handleChange}/>
 				<span className={styles.smtxt}>Street Address</span>
               </label>
             </p>
 			<p>
 			  <label>
-                <input placeholder="" type="text" name="event_address" onChange={handleChange}/>
+                <input placeholder="" type="text" name="address2" onChange={handleChange}/>
 				<span className={styles.smtxt}>Address Line 2</span>
               </label>
             </p>
             <p className={styles.columns}>
               <label className={styles.grow1}>
-                <input placeholder="" type="text" name="event_city" onChange={handleChange}/>
+                <input placeholder="" type="text" name="city" onChange={handleChange}/>
 				<span className={styles.smtxt}>City</span>
               </label>
               <label className={styles.w33}>
-                <select placeholder="" name="event_state" onChange={handleChange}>
+                <select placeholder="" name="state" onChange={handleChange}>
                   <option value="" >Select state</option>
                   <option value="AL">AL</option>
                   <option value="AK">AK</option>
@@ -197,7 +198,7 @@ const Form = ({ data, posts }) => {
 				<span className={styles.smtxt}>State</span>
               </label>
               <label className={styles.w33}>
-                <input placeholder="" type="text" name="event_zip" onChange={handleChange}/>
+                <input placeholder="" type="text" name="zip" onChange={handleChange}/>
 				<span className={styles.smtxt}>Zip Code</span>
 				</label>
             </p>
@@ -232,7 +233,7 @@ const Form = ({ data, posts }) => {
             <p>
               <button type="submit">Submit Contact Form</button>
             </p>
-            <input type="hidden" name="form-name" value="catering"></input>
+            <input type="hidden" name="form-name" value="contact"></input>
           </form>
           <p dangerouslySetInnerHTML={{ __html: data.acf?.submit_message || '' }} />
         </div>
