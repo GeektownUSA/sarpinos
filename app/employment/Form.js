@@ -424,13 +424,13 @@ const Form = ({ data, posts }) => {
                 <input placeholder="" required type="tel"
                   name="phone"
                   pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"
-                  required onChange={handleChange}/>
+				  onChange={handleChange}/>
               </label>
 			  
 			  <label className={styles.w50}>Email *
                 <input placeholder="" required type="email" name="email"
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                  required onChange={handleChange}/>
+				  onChange={handleChange}/>
               </label>              
             </p>
 			
@@ -1078,7 +1078,7 @@ const Form = ({ data, posts }) => {
             </p>
 			
 			<p className={styles.columns}>
-              <label className={styles.w50}>Today's Date *
+              <label className={styles.w50}>Todays Date *
                 <input ref={dateInputRef} type="date" name="today_date" onChange={handleChange} />
               </label>
             </p>
