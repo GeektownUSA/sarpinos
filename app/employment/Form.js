@@ -3,10 +3,8 @@ import { useState, useEffect, useRef, useContext } from 'react';
 import { StoreContext } from '../context/useStoreContext';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import SignatureCanvas from 'react-signature-canvas'; 
 import styles from './Form.module.css';
-
-// Load signature pad only on client
-const SignatureCanvas = dynamic(() => import('react-signature-canvas'), { ssr: false });
 
 export default function Form({ data, posts }) {
   const [formData, setFormData] = useState({
@@ -127,16 +125,14 @@ export default function Form({ data, posts }) {
   const handleSelectChange7 = (e) => {
     setSelectedOption7(e.target.value);
   };
-
+  
   const [currentDate, setCurrentDate] = useState('');
   const dateInputRef = useRef();
 
   const sigCanvas = useRef(null);
-  const [mounted, setMounted] = useState(false);    // ensure client mount
-  const [canvasKey, setCanvasKey] = useState(0);    // fallback to force rerender/reset
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    setMounted(true);
     const today = new Date();
     const nextYear = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
 
@@ -161,44 +157,43 @@ export default function Form({ data, posts }) {
   };
 
   const clearSignature = () => {
-    const pad = sigCanvas.current;
-    if (pad && typeof pad.clear === 'function') {
-      try {
-        pad.clear();
-        setFormData((prev) => ({ ...prev, signature: '' }));
-      } catch (err) {
-        // Fallback: force rerender to reset canvas
-        setCanvasKey((k) => k + 1);
-        setFormData((prev) => ({ ...prev, signature: '' }));
-      }
-    } else {
-      // If pad not ready, fallback reset by rerendering
-      setCanvasKey((k) => k + 1);
-      console.log('Signature pad not ready yet — forcing reset via rerender');
+    if (sigCanvas.current) {
+      sigCanvas.current.clear();
+      setFormData((prev) => ({ ...prev, signature: '' }));
+      setError('');
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const pad = sigCanvas.current;
 
-    let signatureBase64 = '';
-    if (pad && typeof pad.isEmpty === 'function' && !pad.isEmpty()) {
-      signatureBase64 = pad.toDataURL();
+    if (!sigCanvas.current || sigCanvas.current.isEmpty()) {
+      setError('Signature is required');
+      return;
     }
 
+    const signatureBase64 = sigCanvas.current.toDataURL();
     const updatedFormData = { ...formData, signature: signatureBase64 };
 
-    const response = await fetch('/api/submit-form', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedFormData),
-    });
+    console.log('Submitting payload:', updatedFormData);
 
-    if (response.ok) {
-      window.location.href = window.location.origin + '/success';
-    } else {
-      alert('Error submitting form');
+    try {
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedFormData),
+      });
+
+      if (response.ok) {
+        window.location.href = '/success';
+      } else {
+        const text = await response.text();
+        console.error('Server error:', text);
+        alert('Error submitting form');
+      }
+    } catch (err) {
+      console.error('Network error:', err);
+      alert('Could not reach server');
     }
   };
   
@@ -223,7 +218,7 @@ export default function Form({ data, posts }) {
   };
 
   return (
-	<>
+    <>
       <div className={styles.content} dangerouslySetInnerHTML={{ __html: data.acf.how_it_works_content || '' }} />
       <div className={`responsive-column-container `}>
         
@@ -1141,42 +1136,31 @@ export default function Form({ data, posts }) {
 
 			<p>I UNDERSTAND THAT NOTHING IN THIS EMPLOYMENT APPLICATION, IN COMPANY STATEMENTS OF PERSONNEL POLICIES, OR IN MY COMMUNICATION WITH ANY EMPLOYEE OR OFFICIAL IS INTENDED TO CREATE AN EMPLOYMENT CONTRACT BETWEEN THE COMPANY AND ME, AND THAT MY EMPLOYMENT WITH THE COMPANY IS ENTERED INTO VOLUNTARILY, AND THAT I MAY RESIGN AT ANY TIME. SIMILARLY, MY EMPLOYMENT MAYBE TERMINATED WITH OR WITHOUT CAUSE AT ANY TIME WITHOUT PRIOR NOTICE.</p>
 			
-			<p className={styles.columns}>
-				<div className={styles.w50}>
-				  {mounted ? (
-					<SignatureCanvas
-					  key={canvasKey} 
-					  ref={(ref) => { sigCanvas.current = ref; }}
-					  penColor="black"
-					  backgroundColor="white"
-					  canvasProps={{ width: 500, height: 200, className: 'sigCanvas' }}
-					/>
-				  ) : (
-					<p>Loading signature pad...</p>
-				  )}
-				  
-				  <p style={{ marginTop: 10 }}>
-					<button type="button" onClick={clearSignature} disabled={!mounted}>
-					  Clear Signature
-					</button>
-				  </p>
-				</div>
-		    </p>
-			
+
+		  <p className={styles.columns}>
+			<div className={styles.w50}>
+				<SignatureCanvas
+				ref={sigCanvas}
+				penColor="black"
+				backgroundColor="white"
+				canvasProps={{ width: 500, height: 200, className: 'sigCanvas' }}
+				/>
+				<p>
+				<button type="button" onClick={clearSignature}>Clear Signature</button>
+				</p>
+				{error && <p style={{ color: 'white' }}>{error}</p>}
+			</div>	
+		  </p>
+
 			<p className={styles.columns}>
               <label className={styles.w50}>Todays Date *
-                <input ref={dateInputRef} type="date" name="today_date" onChange={handleChange} />
+                <input ref={dateInputRef} type="date" name="today_date" required onChange={handleChange} />
               </label>
             </p>
-			
-			
-			
-            <p>
-              <button type="submit">Submit Form</button>
-            </p>
-            <input type="hidden" name="form-name" value="employment"></input>
-          </form>
-          <p dangerouslySetInnerHTML={{ __html: data.acf?.submit_message || '' }} />
+
+			<button type="submit">Submit Form</button>
+			</form>
+			<p dangerouslySetInnerHTML={{ __html: data.acf?.submit_message || '' }} />
         </div>
       </div>
     </>
