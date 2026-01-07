@@ -465,7 +465,7 @@ export default function Form({ data, posts }) {
 					<select
 					  defaultValue={store || "default"}
 					  placeholder="Location"
-					  name="work_store"
+					  name="store"
 					  required
 					  onChange={handleStoreChange}>
 					  <option value="default" disabled>Select a store</option>
