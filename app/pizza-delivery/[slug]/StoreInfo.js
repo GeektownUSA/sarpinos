@@ -89,7 +89,15 @@ const StoreInfo = ({ post }) => {
       </div>
       <div className={styles.content}>
         <h5>Wondering about our delivery area?</h5>
-        <p>Food and Pizza Delivery to the {post.acf?.name || 'your area'} area at no additional cost! Want to know if your zip code, hotel or other location is in our delivery area? See the <Link href={url + '/delivery-area'}>Delivery Area section</Link> for more specific details.</p>
+		{post.acf?.wondering_about_our_delivery_area ? (
+			<div
+			  dangerouslySetInnerHTML={{
+				__html: post.acf.wondering_about_our_delivery_area,
+			  }}
+			/>
+		  ) : (
+			<p>Food and Pizza Delivery to the {post.acf?.name || 'your area'} area at no additional cost! Want to know if your zip code, hotel or other location is in our delivery area? See the <Link href={url + '/delivery-area'}>Delivery Area section</Link> for more specific details.</p>
+		  )}
       </div>
       <div className={styles.content}>
         <h5>Have a craving after hours?</h5>
