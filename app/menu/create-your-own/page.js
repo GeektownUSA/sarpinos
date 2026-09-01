@@ -59,7 +59,7 @@ export default async function Page({ params }) {
         "@type": "Restaurant",
         "url": `https://www.gosarpinos.com`,
         "name": "Sarpino's Pizzeria",
-        "description": "Sarpino's is your go-to for authentic Italian flavor and free delivery on gourmet pizzas, open late into the night when, and where, you need it most.",
+        "description": "Sarpino's is your go-to for authentic Italian flavor and fast delivery on gourmet pizzas, open late into the night when, and where, you need it most.",
         "address": {
           '@type': 'PostalAddress',
           "streetAddress": '200 Tri State International, Suite 550',
