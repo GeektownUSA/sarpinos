@@ -14,7 +14,7 @@ const CalloutWhy = ({ containerClasses, gridClasses }) => {
               <Car />
             </div>
           </div>
-          <h2 className='slide-up-in' style={{ padding: '1.5rem 0' }}>Free <br />Delivery</h2>
+          <h2 className='slide-up-in' style={{ padding: '1.5rem 0' }}>Fast <br />Delivery</h2>
         </Link>
         <Link href="/blog/sarpinos-is-open-for-late-night-delivery" className={`grid-item ${gridClasses && gridClasses || ''}`} style={{ borderRadius: '10px' }}>
           <div className={styles.hoverMoon} style={{ padding: '2rem 1rem 1rem' }}>
