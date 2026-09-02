@@ -8,13 +8,13 @@ const CalloutWhy = ({ containerClasses, gridClasses }) => {
   return (
     <div className={containerClasses}>
       <div className="responsive-three-column-container" style={{ margin: '3rem 0 0', gridGap: '1.5rem' }}>
-        <Link href="/blog/fast-and-free-pizza-delivery-is-sarpinos-specialty" className={`grid-item ${gridClasses && gridClasses || ''}`} style={{ borderRadius: '10px' }}>
+        <Link href="/" className={`grid-item ${gridClasses && gridClasses || ''}`} style={{ borderRadius: '10px' }}>
           <div className={styles.hoverCar}>
             <div style={{ padding: '2rem 1rem 1rem' }}>
               <Car />
             </div>
           </div>
-          <h2 className='slide-up-in' style={{ padding: '1.5rem 0' }}>Fast <br />Delivery</h2>
+          <h2 className='slide-up-in' style={{ padding: '1.5rem 0' }}>Delivery</h2>
         </Link>
         <Link href="/blog/sarpinos-is-open-for-late-night-delivery" className={`grid-item ${gridClasses && gridClasses || ''}`} style={{ borderRadius: '10px' }}>
           <div className={styles.hoverMoon} style={{ padding: '2rem 1rem 1rem' }}>
