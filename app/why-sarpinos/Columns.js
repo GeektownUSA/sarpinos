@@ -4,8 +4,8 @@ const Columns = ({ data }) => {
   return (
     <section className="page-container">
       <div className="responsive-column-container">
-        <div className="column">{data.acf.column1}</div>
-        <div className="column">{data.acf.column2}</div>
+        <div className="column" dangerouslySetInnerHTML={{ __html: data.acf.column1 }}></div>
+        <div className="column" dangerouslySetInnerHTML={{ __html: data.acf.column2 }}></div>
       </div>
       <div className="text-align-center" style={{ margin: '2rem 0' }}>
         <OrderBtn />
