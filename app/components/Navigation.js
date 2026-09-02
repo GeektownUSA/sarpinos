@@ -256,7 +256,6 @@ export default function Navigation() {
           <ul ref={myRef1} className={`item submenu about ${activeMenus['About'] ? 'active' : ''}`}>
             <li className="subitem"><Link href="/company" onClick={() => handleSubmenu('About')}>Company Info</Link></li>
             <li className="subitem"><Link href="/why-sarpinos" onClick={() => handleSubmenu('About')}>Why Sarpino&apos;s?</Link></li>
-            <li className="subitem"><Link href="/blog" onClick={() => handleSubmenu('About')}>Sarpino&apos;s Blog</Link></li>
           </ul>
         )}
         {activeMenus['Menu'] && (
@@ -435,7 +434,6 @@ export default function Navigation() {
             </li>
             <li className="subitem"><Link href="/company" onClick={handleMobile}>Company Info</Link></li>
             <li className="subitem"><Link href="/why-sarpinos" onClick={handleMobile}>Why Sarpino&apos;s?</Link></li>
-            <li className="subitem"><Link href="/blog" onClick={handleMobile}>Sarpino&apos;s Blog</Link></li>
           </ul>
           <ul className={`${stylesMobile.item} ${stylesMobile.sliderSubmenu} ${activeMobileMenus['Menu'] ? stylesMobile.active : ''}`}>
             <li className={`subitem ${stylesMobile.closeSubmenu}`}>
