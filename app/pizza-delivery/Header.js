@@ -5,7 +5,7 @@ const Header = ({ filteredLocations }) => {
   return (
     <>
       <h1 className={styles.title}>
-        {`Fast Pizza Delivery from ${filteredLocations.length > 1 ? filteredLocations.length : ''} Sarpino\’s Restaurants`}
+        {`Fresh Pizza Delivery from ${filteredLocations.length > 1 ? filteredLocations.length : ''} Sarpino\’s Restaurants`}
       </h1>
     </>
   );
