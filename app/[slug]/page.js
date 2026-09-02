@@ -11,7 +11,7 @@ export async function generateMetadata({ params }) {
     return {
       metadataBase: METADATABASE_API_URL,
       title: 'Sarpino\'s Pizzeria',
-      description: 'Sarpino\'s is your go-to for authentic Italian flavor and free delivery on gourmet pizzas, open late into the night when, and where, you need it most.',
+      description: 'Sarpino\'s is your go-to for authentic Italian flavor and fast delivery on gourmet pizzas, open late into the night when, and where, you need it most.',
       openGraph: {
         images: []
       },
