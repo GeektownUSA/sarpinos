@@ -4,7 +4,7 @@ const Experience = ({ data }) => {
       <div className="responsive-column-container" style={{ padding: '2rem 0' }}>
         <div>
           <h2>{data.acf.experience_headline}</h2>
-          {data.acf.experience_paragraph}
+          <div dangerouslySetInnerHTML={{ __html: data.acf.experience_paragraph }}></div>
         </div>
         <div>
 
