@@ -68,13 +68,15 @@ export default async function Page({ params }) {
         <div className="page-container">
           <div className="text-align-center">
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title?.rendered || '' }} />
-            <p className={styles.date}>
+{!["sarpinos-is-open-for-late-night-delivery", "sarpinos-is-open-every-day-365-days"].includes(params.slug) && (
+  <p className={styles.date}>
               {post?.date && new Date(post.date).toLocaleDateString("en-US", {
                 day: "numeric",
                 month: "long",
                 year: "numeric",
               })}
             </p>
+            )}
             {post?.featuredImage && (
               <Image
                 src={post.featuredImage}
