@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  let post;
+  let post = null;
   let relatedPosts = [];
 
   try {
@@ -36,22 +36,22 @@ export default async function Page({ params }) {
   }
 
   let categoryNames = [];
-  if (post && post.categories) {
-    categoryNames = await getCategoryNamesByIds(post.categories);
+  if (post && post?.categories) {
+    categoryNames = await getCategoryNamesByIds(post?.categories);
   }
 
   try {
     post = await fetchPostBySlug(params.slug);
 
-    if (post && post.categories) {
+    if (post && post?.categories) {
       // Fetch category names
-      categoryNames = await getCategoryNamesByIds(post.categories);
+      categoryNames = await getCategoryNamesByIds(post?.categories);
 
       // Fetch related posts for the first category
-      const fetchedRelatedPosts = await fetchRelatedPosts(post.categories[0]);
+      const fetchedRelatedPosts = await fetchRelatedPosts(post?.categories[0]);
       if (Array.isArray(fetchedRelatedPosts)) {  // Ensure fetchedRelatedPosts is an array
         relatedPosts = fetchedRelatedPosts;
-        // const featuredImageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg';
+        // const featuredImageUrl = post?._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg';
       }
     }
   } catch (error) {
@@ -70,7 +70,7 @@ export default async function Page({ params }) {
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title?.rendered || '' }} />
 {!["sarpinos-is-open-for-late-night-delivery", "sarpinos-is-open-every-day-365-days"].includes(params.slug) && (
   <p className={styles.date}>
-              {post?.date && new Date(post.date).toLocaleDateString("en-US", {
+              {post?.date && new Date(post?.date).toLocaleDateString("en-US", {
                 day: "numeric",
                 month: "long",
                 year: "numeric",
@@ -79,8 +79,8 @@ export default async function Page({ params }) {
             )}
             {post?.featuredImage && (
               <Image
-                src={post.featuredImage}
-                alt={post.title.rendered}
+                src={post?.featuredImage}
+                alt={post?.title.rendered}
                 width={1080}
                 height={487}
                 className={styles.image}

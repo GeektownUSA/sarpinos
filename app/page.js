@@ -27,17 +27,16 @@ export async function generateMetadata({ params }) {
 
 
 export default async function Page({ params }) {
-  let data;
-  let menuItemsWithImages;
-  let specialsData;
-  let cateringImage;
-  let socialImagesData;
-
+  let data = null;
+  let menuItemsWithImages = null;
+  let specialsData = null;
+  let cateringImage = null;
+  let socialImagesData = null;
   const pageId = params.pageId || 149; // Default to 149 if no ID is provided
 
   try {
     data = await fetchPageData(pageId);
-    const popularMenuItems = data.acf.popular_menu_items || [];
+    const popularMenuItems = data?.acf.popular_menu_items || [];
 
     // Fetch image details for each item
     menuItemsWithImages = await Promise.all(popularMenuItems.map(async (item) => {
@@ -51,9 +50,9 @@ export default async function Page({ params }) {
     }));
 
     specialsData = await fetchCPTData(['specials']);
-    cateringImage = await fetchACFImage(data.acf.catering_image);
+    cateringImage = await fetchACFImage(data?.acf.catering_image);
 
-    const socialImagesFeed = data.acf.social_images || [];
+    const socialImagesFeed = data?.acf.social_images || [];
     socialImagesData = await Promise.all(socialImagesFeed.map(async (item) => {
       const image = await fetchACFImage(item.image);
       return {
@@ -68,7 +67,7 @@ export default async function Page({ params }) {
 
   // Select random images
   function getRandomImages(images) {
-    const shuffled = images.sort(() => 0.5 - Math.random());
+    const shuffled = (images || []).sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 3);
   }
 
@@ -82,7 +81,7 @@ export default async function Page({ params }) {
         "name": 'Sarpino\'s Pizzeria',
         "url": 'https://www.gosarpinos.com/',
         "image": './default-image.jpg',
-        "description": data.yoast_head_json.description,
+        "description": data?.yoast_head_json.description,
         "address": {
           '@type': 'PostalAddress',
           "streetAddress": '200 Tri State International, Suite 550',

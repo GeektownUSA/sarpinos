@@ -24,14 +24,13 @@ export async function generateMetadata() {
 
 
 export default async function Page({ params }) {
-  let data;
-  let mainImage;
-  let earnImages;
-  let rewardsPointsImage;
-  let rewardsDiscountImage;
-  let rewardsPizzaImage;
-  let bkgImage;
-
+  let data = null;
+  let mainImage = null;
+  let earnImages = null;
+  let rewardsPointsImage = null;
+  let rewardsDiscountImage = null;
+  let rewardsPizzaImage = null;
+  let bkgImage = null;
   try {
     data = await fetchPageData(pageId);
     // Fetch hero image

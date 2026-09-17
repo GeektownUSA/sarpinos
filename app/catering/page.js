@@ -29,9 +29,8 @@ export async function generateMetadata() {
 
 
 export default async function Page({ params }) {
-  let data;
-  let posts;
-
+  let data = null;
+  let posts = null;
   try {
     data = await fetchPageData(pageId);
     posts = await fetchCPTData([postType]);
@@ -47,8 +46,8 @@ export default async function Page({ params }) {
         <section className="viewport">
           <div className="page-container">
             <Hero
-              featuredImage={data._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
-              featuredImageAlt={data._embedded?.['wp:featuredmedia']?.[0]?.alt_text || 'fresh pizza'}
+              featuredImage={data?._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
+              featuredImageAlt={data?._embedded?.['wp:featuredmedia']?.[0]?.alt_text || 'fresh pizza'}
               data={data}
             />
           </div>

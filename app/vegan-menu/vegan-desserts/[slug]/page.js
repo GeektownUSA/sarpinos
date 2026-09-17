@@ -32,11 +32,10 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
 
-  let post;
-  let mainImage;
-  let pageData;
-  let calloutImage;
-
+  let post = null;
+  let mainImage = null;
+  let pageData = null;
+  let calloutImage = null;
   try {
     post = await fetchCPTBySlug(params.slug, postType);
 
@@ -53,14 +52,15 @@ export default async function Page({ params }) {
   }
   try {
     pageData = await fetchPageData(pageId);
-    calloutImage = pageData?.acf.mobile_app_background_image ? await fetchACFImage(pageData.acf.mobile_app_background_image).catch(e => {
+    calloutImage = pageData?.acf.mobile_app_background_image ? await fetchACFImage(pageData?.acf.mobile_app_background_image).catch(e => {
       console.error(`Error fetching callout image: ${e}`);
       return null;
     }) : null;
 
   } catch (error) {
-    console.error("Error fetching callout image:", pageData.acf.mobile_app_background_image);
-    throw error;
+    console.error("Error fetching callout image:", pageData?.acf?.mobile_app_background_image);
+    // throw removed: a CMS failure must not fail the build
+
   }
 
 
@@ -81,8 +81,8 @@ export default async function Page({ params }) {
             <div className="responsive-column-container">
               <div>
                 <Image
-                  src={mainImage ? mainImage.sourceUrl : '/default-menu-image.svg'}
-                  alt={mainImage ? mainImage.altText : 'vegan desserts'}
+                  src={mainImage ? mainImage?.sourceUrl : '/default-menu-image.svg'}
+                  alt={mainImage ? mainImage?.altText : 'vegan desserts'}
                   width={612}
                   height={678}
                   className={styles.image}
@@ -92,7 +92,7 @@ export default async function Page({ params }) {
                 <ShareToggle post={post} />
                 <h1 dangerouslySetInnerHTML={{ __html: post?.title?.rendered || '' }} />
                 <div dangerouslySetInnerHTML={{ __html: post?.content?.rendered || '' }} />
-                <OrderBtn category={post.type} />
+                <OrderBtn category={post?.type} />
                 <ItemTabs
                   tab1="Nutritional Info"
                   tab2="Allergens"

@@ -39,7 +39,7 @@ export async function generateMetadata({ params }) {
     title,
     description,
     openGraph: {
-      images: post?.yoast_head_json?.og_image ? [{ url: post.yoast_head_json.og_image[0].url }] : []
+      images: post?.yoast_head_json?.og_image ? [{ url: post?.yoast_head_json.og_image[0].url }] : []
     },
     jsonld: post?.yoastMetadata?.schema?.["@graph"]
   };
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
 
-  let post;
+  let post = null;
   try {
     post = await fetchCPTBySlug(params.slug, postType);
 
@@ -60,7 +60,7 @@ export default async function Page({ params }) {
     // Handle the error appropriately
   }
 
-  const slug = post.slug || '';
+  const slug = post?.slug || '';
   const url = `/pizza-delivery/${slug}`;
 
   const jsonLd = {
@@ -69,16 +69,16 @@ export default async function Page({ params }) {
     name: 'Sarpino\'s Pizzeria',
     url: `https://www.gosarpinos.com/${url}`,
     image: './default-image.jpg',
-    description: post.yoast_head_json.description,
+    description: post?.yoast_head_json.description,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: post.acf.address,
-      addressLocality: post.acf.city,
-      addressRegion: post.acf.state,
-      postalCode: post.acf.zip,
+      streetAddress: post?.acf.address,
+      addressLocality: post?.acf.city,
+      addressRegion: post?.acf.state,
+      postalCode: post?.acf.zip,
       addressCountry: 'US'
     },
-    telephone: post.acf.phone_number,
+    telephone: post?.acf.phone_number,
     email: 'us@gosarpinos.com',
     servesCuisine: "Italian",
     currenciesAccepted: 'USD',
@@ -86,15 +86,15 @@ export default async function Page({ params }) {
     priceRange: '$$',
     logo: './location-hero-sarpinos.jpg',
     openingHours: [`
-    "Mo ${moment(post.acf.monday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.monday_close, 'HH:mm:ss').format('h:mm a')}", 
-    "Tu ${moment(post.acf.tuesday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.tuesday_close, 'HH:mm:ss').format('h:mm a')}", 
-    "We ${moment(post.acf.wednesday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.wednesday_close, 'HH:mm:ss').format('h:mm a')}", 
-    "Th ${moment(post.acf.thursday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.thursday_close, 'HH:mm:ss').format('h:mm a')}", 
-    "Fr ${moment(post.acf.friday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.friday_close, 'HH:mm:ss').format('h:mm a')}", 
-    "Sa ${moment(post.acf.saturday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.saturday_close, 'HH:mm:ss').format('h:mm a')}",
-    "Su ${moment(post.acf.sunday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.sunday_close, 'HH:mm:ss').format('h:mm a')}"
+    "Mo ${moment(post?.acf.monday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post?.acf.monday_close, 'HH:mm:ss').format('h:mm a')}", 
+    "Tu ${moment(post?.acf.tuesday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post?.acf.tuesday_close, 'HH:mm:ss').format('h:mm a')}", 
+    "We ${moment(post?.acf.wednesday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post?.acf.wednesday_close, 'HH:mm:ss').format('h:mm a')}", 
+    "Th ${moment(post?.acf.thursday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post?.acf.thursday_close, 'HH:mm:ss').format('h:mm a')}", 
+    "Fr ${moment(post?.acf.friday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post?.acf.friday_close, 'HH:mm:ss').format('h:mm a')}", 
+    "Sa ${moment(post?.acf.saturday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post?.acf.saturday_close, 'HH:mm:ss').format('h:mm a')}",
+    "Su ${moment(post?.acf.sunday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post?.acf.sunday_close, 'HH:mm:ss').format('h:mm a')}"
     `],
-    hasMenu: `https://${post.acf.name}.gosarpinos.com/ordering/menu/`,
+    hasMenu: `https://${post?.acf.name}.gosarpinos.com/ordering/menu/`,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.5',

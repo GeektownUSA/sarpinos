@@ -25,8 +25,8 @@ export async function generateMetadata() {
 
 export default async function Page({ searchParams }) {
   
-  let posts;
-  let data;
+  let posts = null;
+  let data = null;
   let urlParamLocation = searchParams.location ? searchParams.location : "";
   //console.log('search params: ',urlParamLocation);
   try {
@@ -45,7 +45,7 @@ export default async function Page({ searchParams }) {
         name: 'Sarpino\'s Pizzeria',
         url: 'https://www.gosarpinos.com/',
         image: './default-image.jpg',
-        description: data.yoast_head_json.description,
+        description: data?.yoast_head_json.description,
         address: {
           '@type': 'PostalAddress',
           streetAddress: '200 Tri State International, Suite 550',
