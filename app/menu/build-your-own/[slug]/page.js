@@ -31,14 +31,13 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
 
-  let data;
-  let post;
-  let calloutImage;
-
+  let data = null;
+  let post = null;
+  let calloutImage = null;
   try {
     data = await fetchPageData(91);
     post = await fetchCPTBySlug(params.slug, postType);
-    calloutImage = data?.acf.mobile_app_background_image ? await fetchACFImage(data.acf.mobile_app_background_image).catch(e => {
+    calloutImage = data?.acf.mobile_app_background_image ? await fetchACFImage(data?.acf.mobile_app_background_image).catch(e => {
       console.error(`Error fetching callout image: ${e}`);
       return null;
     }) : null;
@@ -62,7 +61,7 @@ export default async function Page({ params }) {
       {
         "@context": "https://schema.org",
         "@type": "Restaurant",
-        "url": `https://www.gosarpinos.com/menu/${post.slug}`,
+        "url": `https://www.gosarpinos.com/menu/${post?.slug}`,
         "name": "Sarpino\'s Pizzeria",
         "image": '/default-menu-image.svg',
         "description": "Sarpino's is your go-to for authentic Italian flavor and fast delivery on gourmet pizzas, open late into the night when, and where, you need it most.",
@@ -116,8 +115,8 @@ export default async function Page({ params }) {
           {
             "@type": "ListItem",
             "position": 3,
-            "name": `${post.title.rendered} | Sarpino\'s Pizzeria`,
-            "item": `https://www.gosarpinos.com/menu/${postType}/${post.slug}`
+            "name": `${post?.title.rendered} | Sarpino\'s Pizzeria`,
+            "item": `https://www.gosarpinos.com/menu/${postType}/${post?.slug}`
           }
         ]
       }
@@ -137,8 +136,8 @@ export default async function Page({ params }) {
         <section className="viewport innermenu">
           <div className={`page-container ${styles.container}`}>
             <div className={styles.content}>
-              <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post.title.rendered || '' }} />
-              <div dangerouslySetInnerHTML={{ __html: post.content.rendered || '' }} />
+              <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title.rendered || '' }} />
+              <div dangerouslySetInnerHTML={{ __html: post?.content.rendered || '' }} />
 
               <ItemTabs
                 bkgVariant="green"
@@ -146,9 +145,9 @@ export default async function Page({ params }) {
                 tab2="Sauces"
                 content={content} />
               <div className="display-flex" style={{ alignItems: 'center' }}>
-                <OrderBtn category={post.type} />
-                {data.acf?.allergens_list?.url && (
-                  <Link href={data.acf.allergens_list.url} target='_blank' className='text-link' style={{ paddingLeft: '2rem', color: 'white' }}>
+                <OrderBtn category={post?.type} />
+                {data?.acf?.allergens_list?.url && (
+                  <Link href={data?.acf.allergens_list.url} target='_blank' className='text-link' style={{ paddingLeft: '2rem', color: 'white' }}>
                     Allergen Info
                   </Link>
                 )}

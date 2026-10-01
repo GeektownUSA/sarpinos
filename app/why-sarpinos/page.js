@@ -25,12 +25,11 @@ export async function generateMetadata() {
 
 
 export default async function Page({ params }) {
-  let data;
-  let fullWidthImage;
-
+  let data = null;
+  let fullWidthImage = null;
   try {
     data = await fetchPageData(pageId);
-    fullWidthImage = data.acf && data.acf.full_width_background_image ? await fetchACFImage(data.acf.full_width_background_image) : null;
+    fullWidthImage = data?.acf && data?.acf.full_width_background_image ? await fetchACFImage(data?.acf.full_width_background_image) : null;
   } catch (error) {
     console.error("Error in Page component:", error);
   }

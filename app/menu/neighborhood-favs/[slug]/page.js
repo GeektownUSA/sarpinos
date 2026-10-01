@@ -32,11 +32,10 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
 
-  let post;
-  let mainImage;
-  let pageData;
-  let calloutImage;
-
+  let post = null;
+  let mainImage = null;
+  let pageData = null;
+  let calloutImage = null;
   try {
     post = await fetchCPTBySlug(params.slug, postType);
 
@@ -53,14 +52,15 @@ export default async function Page({ params }) {
   }
   try {
     pageData = await fetchPageData(pageId);
-    calloutImage = pageData?.acf.mobile_app_background_image ? await fetchACFImage(pageData.acf.mobile_app_background_image).catch(e => {
+    calloutImage = pageData?.acf.mobile_app_background_image ? await fetchACFImage(pageData?.acf.mobile_app_background_image).catch(e => {
       console.error(`Error fetching callout image: ${e}`);
       return null;
     }) : null;
 
   } catch (error) {
-    console.error("Error fetching callout image:", pageData.acf.mobile_app_background_image);
-    throw error;
+    console.error("Error fetching callout image:", pageData?.acf?.mobile_app_background_image);
+    // throw removed: a CMS failure must not fail the build
+
   }
 
   const content = [
@@ -75,9 +75,9 @@ export default async function Page({ params }) {
       {
         "@context": "https://schema.org",
         "@type": "Restaurant",
-        "url": `https://www.gosarpinos.com/menu/${post.slug}`,
+        "url": `https://www.gosarpinos.com/menu/${post?.slug}`,
         "name": "Sarpino\'s Pizzeria",
-        "image": mainImage ? mainImage.sourceUrl : '/default-menu-image.svg',
+        "image": mainImage ? mainImage?.sourceUrl : '/default-menu-image.svg',
         "description": "Sarpino's is your go-to for authentic Italian flavor and fast delivery on gourmet pizzas, open late into the night when, and where, you need it most.",
         "address": {
           '@type': 'PostalAddress',
@@ -102,7 +102,7 @@ export default async function Page({ params }) {
             "@type": "MenuSection",
             "name": postType,
             "description": post?.acf?.caption || post?.excerpt?.rendered || '',
-            "image": mainImage ? mainImage.sourceUrl : '/default-menu-image.svg',
+            "image": mainImage ? mainImage?.sourceUrl : '/default-menu-image.svg',
             "hasMenuItem": {
               "@type": "MenuItem",
               "name": post?.title?.rendered,
@@ -110,15 +110,15 @@ export default async function Page({ params }) {
               "mainEntityOfPage": `https://www.gosarpinos.com/menu/${postType}`,
               "nutrition": {
                 "@type": "NutritionInformation",
-                "calories": post.acf.nutritional_info_by_size[0].total_calories ? `${post.acf.nutritional_info_by_size[0].total_calories} calories` : 'Not available',
-                "fatContent": post.acf.nutritional_info_by_size[0].total_fat ? `${post.acf.nutritional_info_by_size[0].total_fat} grams` : 'Not available',
-                "transFatContent": post.acf.nutritional_info_by_size[0].trans_fat ? `${post.acf.nutritional_info_by_size[0].trans_fat} grams` : 'Not available',
-                "cholesterolContent": post.acf.nutritional_info_by_size[0].cholesterol ? `${post.acf.nutritional_info_by_size[0].cholesterol} mg` : 'Not available',
-                "sodiumContent": post.acf.nutritional_info_by_size[0].sodium ? `${post.acf.nutritional_info_by_size[0].sodium} mg` : 'Not available',
-                "carbohydrateContent": post.acf.nutritional_info_by_size[0].total_carbohydrate ? `${post.acf.nutritional_info_by_size[0].total_carbohydrate} grams` : 'Not available',
-                "fiberContent": post.acf.nutritional_info_by_size[0].fiber ? `${post.acf.nutritional_info_by_size[0].fiber} grams` : 'Not available',
-                "sugarContent": post.acf.nutritional_info_by_size[0].sugar ? `${post.acf.nutritional_info_by_size[0].sugar} grams` : 'Not available',
-                "proteinContent": post.acf.nutritional_info_by_size[0].protein ? `${post.acf.nutritional_info_by_size[0].protein} grams` : 'Not available'
+                "calories": post?.acf.nutritional_info_by_size[0].total_calories ? `${post?.acf.nutritional_info_by_size[0].total_calories} calories` : 'Not available',
+                "fatContent": post?.acf.nutritional_info_by_size[0].total_fat ? `${post?.acf.nutritional_info_by_size[0].total_fat} grams` : 'Not available',
+                "transFatContent": post?.acf.nutritional_info_by_size[0].trans_fat ? `${post?.acf.nutritional_info_by_size[0].trans_fat} grams` : 'Not available',
+                "cholesterolContent": post?.acf.nutritional_info_by_size[0].cholesterol ? `${post?.acf.nutritional_info_by_size[0].cholesterol} mg` : 'Not available',
+                "sodiumContent": post?.acf.nutritional_info_by_size[0].sodium ? `${post?.acf.nutritional_info_by_size[0].sodium} mg` : 'Not available',
+                "carbohydrateContent": post?.acf.nutritional_info_by_size[0].total_carbohydrate ? `${post?.acf.nutritional_info_by_size[0].total_carbohydrate} grams` : 'Not available',
+                "fiberContent": post?.acf.nutritional_info_by_size[0].fiber ? `${post?.acf.nutritional_info_by_size[0].fiber} grams` : 'Not available',
+                "sugarContent": post?.acf.nutritional_info_by_size[0].sugar ? `${post?.acf.nutritional_info_by_size[0].sugar} grams` : 'Not available',
+                "proteinContent": post?.acf.nutritional_info_by_size[0].protein ? `${post?.acf.nutritional_info_by_size[0].protein} grams` : 'Not available'
               },
               "suitableForDiet": "https://schema.org/GlutenFreeDiet"
             }
@@ -144,8 +144,8 @@ export default async function Page({ params }) {
           {
             "@type": "ListItem",
             "position": 3,
-            "name": `${post.title.rendered} | Sarpino\'s Pizzeria`,
-            "item": `https://www.gosarpinos.com/menu/${postType}/${post.slug}`
+            "name": `${post?.title.rendered} | Sarpino\'s Pizzeria`,
+            "item": `https://www.gosarpinos.com/menu/${postType}/${post?.slug}`
           }
         ]
       }
@@ -166,8 +166,8 @@ export default async function Page({ params }) {
             <div className="responsive-column-container">
               <div>
                 <Image
-                  src={mainImage ? mainImage.sourceUrl : '/default-menu-image.svg'}
-                  alt={mainImage ? mainImage.altText : 'neighborhood favorites'}
+                  src={mainImage ? mainImage?.sourceUrl : '/default-menu-image.svg'}
+                  alt={mainImage ? mainImage?.altText : 'neighborhood favorites'}
                   width={612}
                   height={678}
                   className={styles.image}
@@ -177,7 +177,7 @@ export default async function Page({ params }) {
                 <ShareToggle post={post} />
                 <h1 dangerouslySetInnerHTML={{ __html: post?.title?.rendered || '' }} />
                 <div dangerouslySetInnerHTML={{ __html: post?.content?.rendered || '' }} />
-                <OrderBtn category={post.type} />
+                <OrderBtn category={post?.type} />
                 <ItemTabs
                   tab1="Nutritional Info"
                   tab2="Allergens"

@@ -26,27 +26,27 @@ export async function generateMetadata() {
 }
 
 export default async function Page() {
-  let data;
-  let posts;
-  let heroImage;
-  let calloutImage;
+  let data = null;
+  let posts = null;
+  let heroImage = null;
+  let calloutImage = null;
   try {
     data = await fetchPageData(pageId);
     posts = await fetchCPTData(postType);
     try {
-      if (data.acf && data.acf.hero_image) {
-        heroImage = await fetchACFImage(data.acf.hero_image);
+      if (data?.acf && data?.acf.hero_image) {
+        heroImage = await fetchACFImage(data?.acf.hero_image);
       }
     } catch (error) {
-      console.error("Error fetching hero image:", data.acf.hero_image);
+      console.error("Error fetching hero image:", data?.acf?.hero_image);
     }
 
     try {
-      if (data.acf && data.acf.mobile_app_background_image) {
-        calloutImage = await fetchACFImage(data.acf.mobile_app_background_image);
+      if (data?.acf && data?.acf.mobile_app_background_image) {
+        calloutImage = await fetchACFImage(data?.acf.mobile_app_background_image);
       }
     } catch (error) {
-      console.error("Error fetching callout image:", data.acf.mobile_app_background_image);
+      console.error("Error fetching callout image:", data?.acf?.mobile_app_background_image);
     }
   } catch (error) {
     console.error("Error in Page component:", error);
@@ -62,8 +62,8 @@ export default async function Page() {
           <MenuHeader
             featuredImage={heroImage?.sourceUrl || '/default-menu-image.svg'}
             featuredImageAlt={heroImage?.altText || 'fresh vegan wings and apps'}
-            pageTitle={data.title.rendered}
-            pageContent={data.content.rendered}
+            pageTitle={data?.title.rendered}
+            pageContent={data?.content.rendered}
             category="Vegan"
           />
           {/* Render the menu posts */}

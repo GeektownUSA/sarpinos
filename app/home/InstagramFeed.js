@@ -14,7 +14,7 @@ const InstagramFeed = ({ feed }) => {
 
   useEffect(() => {
     function getRandomImages(images) {
-      const shuffled = images.sort(() => 0.5 - Math.random());
+      const shuffled = (images || []).sort(() => 0.5 - Math.random());
       return shuffled.slice(0, 3);
     }
 

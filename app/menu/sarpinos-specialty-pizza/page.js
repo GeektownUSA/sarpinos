@@ -28,27 +28,27 @@ export async function generateMetadata() {
 export default async function Page() {
 
 
-  let data;
-  let posts;
-  let heroImage;
-  let calloutImage;
+  let data = null;
+  let posts = null;
+  let heroImage = null;
+  let calloutImage = null;
   try {
     data = await fetchPageData(pageId);
     posts = await fetchCPTData(postType);
     try {
-      if (data.acf && data.acf.hero_image) {
-        heroImage = await fetchACFImage(data.acf.hero_image);
+      if (data?.acf && data?.acf.hero_image) {
+        heroImage = await fetchACFImage(data?.acf.hero_image);
       }
     } catch (error) {
-      console.error("Error fetching hero image:", data.acf.hero_image);
+      console.error("Error fetching hero image:", data?.acf?.hero_image);
     }
 
     try {
-      if (data.acf && data.acf.mobile_app_background_image) {
-        calloutImage = await fetchACFImage(data.acf.mobile_app_background_image);
+      if (data?.acf && data?.acf.mobile_app_background_image) {
+        calloutImage = await fetchACFImage(data?.acf.mobile_app_background_image);
       }
     } catch (error) {
-      console.error("Error fetching callout image:", data.acf.mobile_app_background_image);
+      console.error("Error fetching callout image:", data?.acf?.mobile_app_background_image);
     }
   } catch (error) {
     console.error("Error in Page component:", error);
@@ -61,7 +61,7 @@ export default async function Page() {
         "@context": "https://schema.org",
         "@type": "Restaurant",
         "url": `https://www.gosarpinos.com/menu/sarpinos-specialty-pizza`,
-        "image": heroImage ? heroImage.sourceUrl : '/default-menu-image.svg',
+        "image": heroImage ? heroImage?.sourceUrl : '/default-menu-image.svg',
         "name": "Sarpino\'s Pizzeria",
         "description": "Sarpino's is your go-to for authentic Italian flavor and fast delivery on gourmet pizzas, open late into the night when, and where, you need it most.",
         "address": {
@@ -86,8 +86,8 @@ export default async function Page() {
           "hasMenuSection": {
             "@type": "MenuSection",
             "name": "Specialty Pizzas",
-            "description": data.excerpt.rendered || '',
-            "image": heroImage ? heroImage.sourceUrl : '/default-menu-image.svg'
+            "description": data?.excerpt.rendered || '',
+            "image": heroImage ? heroImage?.sourceUrl : '/default-menu-image.svg'
           },
           "inLanguage": "English"
         }
@@ -105,8 +105,8 @@ export default async function Page() {
           {
             "@type": "ListItem",
             "position": 2,
-            "name": `${data.yoast_head_json.title} | Sarpino\'s Pizzeria`,
-            "item": `https://www.gosarpinos.com/menu/sarpinos-specialty-pizza/${data.slug}`
+            "name": `${data?.yoast_head_json.title} | Sarpino\'s Pizzeria`,
+            "item": `https://www.gosarpinos.com/menu/sarpinos-specialty-pizza/${data?.slug}`
           }
         ]
       }
@@ -124,10 +124,10 @@ export default async function Page() {
       <section className="viewport innermenu">
         <div className="page-container cream-color">
           <MenuHeader
-            featuredImage={heroImage ? heroImage.sourceUrl : '/default-menu-image.svg'}
+            featuredImage={heroImage ? heroImage?.sourceUrl : '/default-menu-image.svg'}
             featuredImageAlt={heroImage?.altText || 'fresh pizza'}
-            pageTitle={data.title.rendered}
-            pageContent={data.content.rendered}
+            pageTitle={data?.title.rendered}
+            pageContent={data?.content.rendered}
             category="pizza"
           />
           {/* Render the menu posts */}

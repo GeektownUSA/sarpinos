@@ -24,9 +24,8 @@ export async function generateMetadata() {
 }
 
 export default async function Page({ params }) {
-  let data;
-  let posts;
-
+  let data = null;
+  let posts = null;
   try {
     data = await fetchPageData(pageId);
     posts = await fetchPostData();
@@ -35,13 +34,13 @@ export default async function Page({ params }) {
   }
 
   // Sort posts by date
-  const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  const sortedPosts = posts?.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   // Get the most recent post (which is the featured post)
   const featuredPost = sortedPosts[0];
 
   // Filter out the featured post from all posts to get non-featured posts
-  const nonFeaturedPosts = posts.filter(post => post !== featuredPost);
+  const nonFeaturedPosts = posts?.filter(post => post !== featuredPost);
   return (
     <>
       <div className="cream-color">

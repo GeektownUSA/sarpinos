@@ -35,8 +35,7 @@ export async function generateMetadata({ params }) {
 
 
 export default async function Custom404({ params }) {
-  let data;
-
+  let data = null;
   try {
     data = await fetchMiscData(params.slug);
   } catch (error) {

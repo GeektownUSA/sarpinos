@@ -23,9 +23,8 @@ export async function generateMetadata() {
 
 
 export default async function Page({ params }) {
-  let data;
-  let mainImage;
-
+  let data = null;
+  let mainImage = null;
   try {
     data = await fetchPageData(pageId);
     mainImage = data?.acf.main_image ? await fetchACFImage(data?.acf.main_image).catch(e => {

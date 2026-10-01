@@ -25,17 +25,17 @@ export async function generateMetadata() {
 
 
 export default async function Page({ params }) {
-  let data;
-  let franchiseImage;
-
+  let data = null;
+  let franchiseImage = null;
   try {
     data = await fetchPageData(pageId);
-    if (data.acf && data.acf.franchise_image) {
+    if (data?.acf && data?.acf.franchise_image) {
       try {
-        franchiseImage = await fetchACFImage(data.acf.franchise_image);
+        franchiseImage = await fetchACFImage(data?.acf.franchise_image);
       } catch (error) {
-        console.error("Error fetching franchise image:", data.acf.franchise_image);
-        throw error;
+        console.error("Error fetching franchise image:", data?.acf?.franchise_image);
+        // throw removed: a CMS failure must not fail the build
+
       }
     } else {
       franchiseImage = '/franchise-exterior.jpg'; // Set fallback image here

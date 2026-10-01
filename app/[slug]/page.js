@@ -33,8 +33,7 @@ export async function generateMetadata({ params }) {
 
 
 export default async function Page({ params }) {
-  let data;
-
+  let data = null;
   try {
     data = await fetchMiscData(params.slug);
   } catch (error) {

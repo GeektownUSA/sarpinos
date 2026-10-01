@@ -25,27 +25,27 @@ export async function generateMetadata() {
 }
 
 export default async function Page({ params }) {
-  let data;
-  let posts;
-  let heroImage;
-  let calloutImage;
+  let data = null;
+  let posts = null;
+  let heroImage = null;
+  let calloutImage = null;
   try {
     data = await fetchPageData(pageId);
     posts = await fetchCPTData(postType);
     try {
-      if (data.acf && data.acf.hero_image) {
-        heroImage = await fetchACFImage(data.acf.hero_image);
+      if (data?.acf && data?.acf.hero_image) {
+        heroImage = await fetchACFImage(data?.acf.hero_image);
       }
     } catch (error) {
-      console.error("Error fetching hero image:", data.acf.hero_image);
+      console.error("Error fetching hero image:", data?.acf?.hero_image);
     }
 
     try {
-      if (data.acf && data.acf.mobile_app_background_image) {
-        calloutImage = await fetchACFImage(data.acf.mobile_app_background_image);
+      if (data?.acf && data?.acf.mobile_app_background_image) {
+        calloutImage = await fetchACFImage(data?.acf.mobile_app_background_image);
       }
     } catch (error) {
-      console.error("Error fetching callout image:", data.acf.mobile_app_background_image);
+      console.error("Error fetching callout image:", data?.acf?.mobile_app_background_image);
     }
   } catch (error) {
     console.error("Error in Page component:", error);
@@ -81,9 +81,9 @@ export default async function Page({ params }) {
       {
         '@type': 'Menu',
         "name": `Build Your Own | Sarpino\'s Pizzeria`,
-        "url": `https://www.gosarpinos.com/menu/${data.slug}`,
+        "url": `https://www.gosarpinos.com/menu/${data?.slug}`,
         "image": heroImage?.sourceUrl || '/default-menu-image.svg',
-        "description": data.yoast_head_json.description || data.excerpt.rendered,
+        "description": data?.yoast_head_json.description || data?.excerpt.rendered,
         "servesCuisine": "Italian",
       },
       {
@@ -119,8 +119,8 @@ export default async function Page({ params }) {
           <MenuHeader
             featuredImage={heroImage?.sourceUrl || '/default-menu-image.svg'}
             featuredImageAlt={heroImage?.altText || 'build your own fresh pizza'}
-            pageTitle={data.title.rendered}
-            pageContent={data.content.rendered}
+            pageTitle={data?.title.rendered}
+            pageContent={data?.content.rendered}
             category="build-your-own"
           />
           {/* Render the menu posts */}

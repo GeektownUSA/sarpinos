@@ -25,9 +25,8 @@ export async function generateMetadata() {
 }
 
 export default async function Page() {
-  let data;
-  let posts;
-
+  let data = null;
+  let posts = null;
   try {
     data = await fetchPageData(pageId);
     posts = await fetchCPTData(postType);

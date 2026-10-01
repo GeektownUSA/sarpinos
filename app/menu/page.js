@@ -27,17 +27,18 @@ export async function generateMetadata() {
 
 export default async function Page({ params }) {
 
-  let data;
-  let posts;
-  let heroImage;
+  let data = null;
+  let posts = null;
+  let heroImage = null;
   try {
     data = await fetchPageData(pageId);
     posts = await fetchCPTData(postType);
     try {
-      heroImage = await fetchACFImage(data.acf.hero_image);
+      heroImage = await fetchACFImage(data?.acf.hero_image);
     } catch (error) {
-      console.error("Error fetching hero image:", data.acf.hero_image);
-      throw error;
+      console.error("Error fetching hero image:", data?.acf?.hero_image);
+      // throw removed: a CMS failure must not fail the build
+
     }
   } catch (error) {
     console.error("Error in Page component:", error);
@@ -50,7 +51,7 @@ export default async function Page({ params }) {
         "name": `Full Menu | Sarpino\'s Pizzeria`,
         "url": 'https://www.gosarpinos.com/menu/sarpinos-specialty-pizza',
         "image": heroImage?.sourceUrl,
-        "description": data.yoast_head_json.description || data.excerpt.rendered,
+        "description": data?.yoast_head_json.description || data?.excerpt.rendered,
         "servesCuisine": "Italian",
       },
       {
@@ -66,8 +67,8 @@ export default async function Page({ params }) {
           {
             "@type": "ListItem",
             "position": 2,
-            "name": `${data.yoast_head_json.title} | Sarpino\'s Pizzeria`,
-            "item": `https://www.gosarpinos.com/menu/${data.slug}`
+            "name": `${data?.yoast_head_json.title} | Sarpino\'s Pizzeria`,
+            "item": `https://www.gosarpinos.com/menu/${data?.slug}`
           }
         ]
       }
@@ -87,8 +88,8 @@ export default async function Page({ params }) {
           <MenuHeader
             featuredImage={heroImage?.sourceUrl || '/default-menu-image.svg'}
             featuredImageAlt={heroImage?.altText || 'fresh pizza'}
-            pageTitle={data.title.rendered}
-            pageContent={data.content.rendered}
+            pageTitle={data?.title.rendered}
+            pageContent={data?.content.rendered}
           />
           {/* Render the menu posts */}
           <MenuContent
